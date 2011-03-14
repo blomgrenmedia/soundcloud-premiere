@@ -69,14 +69,13 @@ body{
 				cursor: pointer;
 				height: $time + $comments;
 				width: $comments;
-
-				.avatar{
-
-					@include background-size;
+				
+				.avatar, .avatar img{
 					height: $comments;
 					width: $comments;
-
 				}
+
+				.avatar{ @include background-size; }
 
 			}
 
@@ -280,6 +279,8 @@ body{
 }
 
 // Modernizr Fix
+
+.backgroundsize .header .comment img{ display: none; }
 
 .canvas .time .waveform{ display: none; }
 

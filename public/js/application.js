@@ -479,7 +479,9 @@ $(function(){
 			
 			// Create the user avatar and append it to the newly created comment.
 
-			$('<div class="avatar"></div>').css('background-image', 'url(' + comment.user.avatar_url + ')').appendTo($comment);
+			$('<div class="avatar"><img src="' + comment.user.avatar_url + '"></div>')
+				.css('background-image', 'url(' + comment.user.avatar_url + ')')
+				.appendTo($comment);
 			
 		}
 		

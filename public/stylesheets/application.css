@@ -40,13 +40,14 @@ body {
         cursor: pointer;
         height: 68px;
         width: 18px; }
+        body .header .comments .comment .avatar, body .header .comments .comment .avatar img {
+          height: 18px;
+          width: 18px; }
         body .header .comments .comment .avatar {
           -webkit-background-size: cover;
           -moz-background-size: cover;
           -o-background-size: cover;
-          background-size: cover;
-          height: 18px;
-          width: 18px; }
+          background-size: cover; }
   body .player {
     width: 600px; }
     body .player, body .player .panel {
@@ -147,8 +148,14 @@ body {
           position: relative;
           top: 0; }
 
+.backgroundsize .header .comment img {
+  display: none; }
+
 .canvas .time .waveform {
   display: none; }
 
 .backgroundsize .player .artwork img {
+  display: none; }
+
+.backgroundsize .player .avatar img {
   display: none; }
