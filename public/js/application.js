@@ -228,7 +228,7 @@ $(function(){
 									
 									clearTimeout(messageTimer);
 									
-									messageTimer = setTimeout("$('.message').fadeOut();", 3000);
+									messageTimer = setTimeout("$('.message').hide();", 3000);
 									
 									position = comment.timestamp / track.duration * 100;
 
