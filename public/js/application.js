@@ -29,6 +29,8 @@ soundManager.useFastPolling = true;
 
 $(function(){
 	
+	alert( $('html').hasClass('canvas') );
+	
 	// Center Player & Share buttons on page
 	
 	$(window).resize(function(){
