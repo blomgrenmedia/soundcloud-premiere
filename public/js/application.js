@@ -228,19 +228,11 @@ $(function(){
 									
 									clearTimeout(messageTimer);
 									
-									//messageTimer = setTimeout( function() { $('.message').hide(); }, 3000);
+									messageTimer = setTimeout( function() { $('.message').fadeOut(); }, 3000);
 									
 									position = comment.timestamp / track.duration * 100;
-									
-									$('.message').text(comment.body).fadeIn( function() {
-										
-										messageTimer = setTimeout( function() {
-											$(".message").fadeOut("fast");
-										}, 2000);
-										
-									}); //.delay(2000).fadeOut();
 
-									//$('.message').empty().show().text(comment.body).css('left', position + '%');
+									$('.message').text(comment.body).fadeIn().css('left', position + '%');
 
 								});
 
