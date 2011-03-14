@@ -122,9 +122,8 @@ body {
       right: 20px; }
   body .message {
     display: none;
-    height: 50px;
     padding: 10px;
-    top: 36px;
+    top: 68px;
     width: 250px; }
   body .jspContainer {
     overflow: hidden;

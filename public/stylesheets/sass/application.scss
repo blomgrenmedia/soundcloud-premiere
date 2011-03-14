@@ -229,9 +229,9 @@ body{
 	.message{
 
 		display: none;
-		height: 50px;
+		//height: 50px;
 		padding: 10px;
-		top: 36px;
+		top: $comments + $time;
 		width: 250px;
 
 	}

@@ -237,6 +237,8 @@ $(function(){
 									messageTimer = setTimeout( function() { $('.message').fadeOut(); }, 3000);
 									
 									position = comment.timestamp / track.duration * 100;
+									
+									//$('.comment_' + comment.id).addClass('active');
 
 									$('.message').text(comment.body).fadeIn().css('left', position + '%');
 
@@ -478,7 +480,7 @@ $(function(){
 			
 			// Create the comment, position it, and append it to *.comments*.
 
-			var $comment = $('<div class="comment"></div>').css('left', position + "%").appendTo('.comments');
+			var $comment = $('<div class="comment_' + comment.id + ' comment"></div>').css('left', position + "%").appendTo('.comments');
 			
 			// Create the user avatar and append it to the newly created comment.
 

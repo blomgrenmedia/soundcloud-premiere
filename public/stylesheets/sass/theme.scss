@@ -75,12 +75,7 @@ body{
 			
 			background-color: transparentize($background-color, 0.2);
 			
-			.comment{
-				
-				border-left: 1px solid $background-color;
-				-webkit-transition: border-color 1s;
-				
-			}
+			.comment{ border-left: 1px solid whiteSmoke; /*$background-color;*/ }
 			
 		}
 		
@@ -161,7 +156,7 @@ body{
 
 		background-color: black;
 		background-color: rgba(0,0,0,0.5);
-		@include border-radius(10px);
+		//@include border-radius(10px);
 		color: white;
 		font-size: 10px;
 
