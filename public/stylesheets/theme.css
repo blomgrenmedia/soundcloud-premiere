@@ -61,6 +61,7 @@ body {
   body .footer {
     background-color: white; }
   body .message {
+    background-color: black;
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 10px;
     -moz-border-radius: 10px;
