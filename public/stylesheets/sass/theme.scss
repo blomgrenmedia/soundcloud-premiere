@@ -15,7 +15,6 @@ $text-color: #000000;
 	border-radius: $size; 
 	-moz-border-radius: $size;
 	-webkit-border-radius: $size;
-	behavior: url(/stylesheets/border-radius.htc);
 }
 @mixin box-shadow{
 	box-shadow: 0 0 50px rgba(0,0,0,0.25);
