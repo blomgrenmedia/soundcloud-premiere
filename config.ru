@@ -27,9 +27,13 @@ class App < Sinatra::Base
   
   get '/waveform' do
     
+    content_type 'json'
+    
     # Get the URL and decode to remove any %20, etc
     
     url = CGI::unescape(params[:url])
+    
+    puts url
     
     # Get the contents of the URL
     
@@ -50,7 +54,7 @@ class App < Sinatra::Base
     
     # Setup the data URL
     
-    type_prefix = "data:" + type + ";base64,"
+    type_prefix = "data:image/" + type.downcase + ";base64,"
     
     # Encode the image into base64
     
@@ -70,9 +74,15 @@ class App < Sinatra::Base
     
     # Encode it into JSON
     
-    return_val = MultiJson.encode(return_arr)
+    MultiJson.encode(return_arr)
     
-    return return_val
+    # Wrap the callback around the JSON
+    
+    #return_val = '(' + return_val + ');'
+    
+    #return_val = $_GET["callback"] . '(' . $return_val . ');';
+    
+    #return return_val
     
   end
   

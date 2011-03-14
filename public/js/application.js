@@ -410,11 +410,65 @@ $(function(){
 			$('.track, .buffer, .played').fadeOut('fast', function(){
 
 				context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+				
+				$.getJSON('/waveform?url=' + waveform_url, function(data){
+					
+					var image = new Image;
+					
+					image.src = data.data;
+					
+					image.onload = function(){
+					
+						image.width = data.width;
+						image.height = data.height;
+						
+						//console.log(image);
+						
+						context.drawImage(image, 0, 0, context.canvas.width, context.canvas.height);
 
-				$.getImageData({
+						var imgd = context.getImageData(0, 0, context.canvas.width, context.canvas.height);
+
+						var pix = imgd.data;
+
+						for (var i = 0, n = pix.length; i < n; i += 4) {
+
+							pix[i] = waveform_color[0]; // red
+							pix[i+1] = waveform_color[1]; // green
+							pix[i+2] = waveform_color[2]; // blue
+
+						}
+
+						context.putImageData(imgd, 0, 0);
+
+						$('.track, .buffer, .played').fadeIn('fast');
+						
+					}
+					
+					//console.log(image);
+					
+					/*context.drawImage(image, 0, 0, context.canvas.width, context.canvas.height);
+
+					var imgd = context.getImageData(0, 0, context.canvas.width, context.canvas.height);
+
+					var pix = imgd.data;
+
+					for (var i = 0, n = pix.length; i < n; i += 4) {
+
+						pix[i] = waveform_color[0]; // red
+						pix[i+1] = waveform_color[1]; // green
+						pix[i+2] = waveform_color[2]; // blue
+
+					}
+
+					context.putImageData(imgd, 0, 0);
+
+					$('.track, .buffer, .played').fadeIn('fast');*/
+					
+				});
+
+				/*$.getImageData({
 
 				  url: waveform_url,
-					server: 'http://qotsa.heroku.com/waveform/',
 
 				  success: function(image){
 					
@@ -446,7 +500,7 @@ $(function(){
 					
 					}
 
-				});
+				});*/
 
 			});
 			
