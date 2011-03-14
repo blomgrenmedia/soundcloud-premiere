@@ -1,0 +1,10 @@
+SAFARI / WIN
+
+does not support background-size: cover
+does not support canvas
+
+IE / WIN
+
+no comments
+no time
+no background-size: cover
