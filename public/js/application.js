@@ -414,8 +414,11 @@ $(function(){
 				$.getImageData({
 
 				  url: waveform_url,
+					server: 'http://qotsa.heroku.com/waveform/',
 
 				  success: function(image){
+					
+						console.log(image);
 
 						context.drawImage(image, 0, 0, context.canvas.width, context.canvas.height);
 
@@ -437,7 +440,11 @@ $(function(){
 
 				  },
 
-				  error: function(xhr, text_status){ }
+				  error: function(xhr, text_status){
+					
+						console.log(text_status);
+					
+					}
 
 				});
 
