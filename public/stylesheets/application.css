@@ -1,0 +1,151 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: none; }
+
+html, body {
+  height: 100%;
+  overflow: hidden; }
+
+body {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; }
+  body > div {
+    position: absolute; }
+  body .header {
+    height: 68px; }
+    body .header div, body .header canvas {
+      position: absolute; }
+    body .header, body .header > div {
+      width: 100%; }
+    body .header .time {
+      cursor: pointer;
+      height: 50px;
+      overflow: hidden;
+      top: 18px; }
+      body .header .time div {
+        display: none; }
+      body .header .time div, body .header .time canvas, body .header .time img {
+        height: 40px;
+        top: 5px;
+        width: 100%; }
+      body .header .time .buffer, body .header .time .played {
+        width: 0; }
+    body .header .comments {
+      cursor: pointer;
+      height: 18px; }
+      body .header .comments .comment {
+        cursor: pointer;
+        height: 68px;
+        width: 18px; }
+        body .header .comments .comment .avatar {
+          -webkit-background-size: cover;
+          -moz-background-size: cover;
+          -o-background-size: cover;
+          background-size: cover;
+          height: 18px;
+          width: 18px; }
+  body .player {
+    width: 600px; }
+    body .player, body .player .panel {
+      height: 300px; }
+    body .player .panel {
+      left: 150px;
+      width: 300px; }
+      body .player .panel, body .player .panel > div {
+        position: absolute; }
+      body .player .panel > div {
+        height: 280px;
+        left: 10px;
+        top: 10px;
+        width: 280px; }
+      body .player .panel.left .artwork {
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        display: none; }
+        body .player .panel.left .artwork .button {
+          cursor: pointer;
+          left: 102.5px;
+          position: absolute;
+          top: 102.5px; }
+          body .player .panel.left .artwork .button, body .player .panel.left .artwork .button .play {
+            height: 75px;
+            width: 75px; }
+      body .player .panel.right .avatar {
+        height: 47px;
+        width: 47px; }
+      body .player .panel.right .description {
+        height: 37px;
+        left: 67px;
+        top: 15px;
+        width: 223px; }
+      body .player .panel.right ol.tracks {
+        height: 223px;
+        left: 10px;
+        list-style: none;
+        overflow: auto;
+        position: absolute;
+        top: 67px;
+        width: 280px; }
+        body .player .panel.right ol.tracks li {
+          cursor: pointer;
+          height: 25px;
+          line-height: 25px;
+          overflow: hidden;
+          padding-left: 10px;
+          text-overflow: ellipsis; }
+  body .footer {
+    bottom: 18px;
+    height: 50px;
+    width: 100%; }
+    body .footer div {
+      bottom: 17px;
+      position: absolute; }
+    body .footer .links {
+      left: 20px; }
+      body .footer .links a {
+        margin-right: 10px; }
+    body .footer .share {
+      width: 200px; }
+      body .footer .share .facebook-like-button {
+        left: 110px;
+        position: absolute;
+        top: 0px; }
+    body .footer .logo {
+      right: 20px; }
+  body .message {
+    display: none;
+    height: 50px;
+    padding: 10px;
+    top: 36px;
+    width: 250px; }
+  body .jspContainer {
+    overflow: hidden;
+    position: relative; }
+    body .jspContainer .jspPane {
+      position: absolute; }
+    body .jspContainer .jspVerticalBar {
+      height: 100%;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 10px; }
+      body .jspContainer .jspVerticalBar * {
+        margin: 0;
+        padding: 0; }
+      body .jspContainer .jspVerticalBar .jspCap {
+        display: none; }
+      body .jspContainer .jspVerticalBar .jspTrack {
+        position: relative; }
+        body .jspContainer .jspVerticalBar .jspTrack .jspDrag {
+          cursor: pointer;
+          left: 0;
+          position: relative;
+          top: 0; }
+
+.canvas .time .waveform {
+  display: none; }

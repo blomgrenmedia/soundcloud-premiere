@@ -1,17 +1,89 @@
 !!!
-%html
+%html.no-js
 	%head
 	
-		%title Sinatra
+		%title Queens of the Stone Age
 		
 		%link{:rel => "shortcut icon", :href => "/favicon.ico", :type => "image/x-icon"}
 		
-		%link{:rel => "stylesheet", :href => "/stylesheets/application.css", :type => 'text/css', :media => "screen"}
-		
+		%meta{:property => "og:title", :content => "Belong"}		
+		%meta{:property => "og:description", :content => 'Listen to "Belong," the new album from The Pains of Being Pure At Heart.'}		
+		%meta{:property => "og:type", :content => "album"}
+		%meta{:property => "og:image", :content => "http://belong.heroku.com/images/artwork.jpg"}
+		%meta{:property => "og:url", :content => "http://belong.heroku.com"}
+		%meta{:property => "og:site_name", :content => "The Pains of Being Pure At Heart"}				
+		%meta{:property => "og:video", :content => "http://player.soundcloud.com/player.swf?url=http://soundcloud.com/thepainsofbeingpure/sets/belong&amp;color=000000&amp;auto_play=true&amp;player_type=artwork"}
+		%meta{:property => "og:video:height", :content => "425"}
+		%meta{:property => "og:video:width", :content => "425"}
+		%meta{:property => "og:video:type", :content => "application/x-shockwave-flash"}
+		%meta{:property => "fb:admins", :content => "23424322"}
+	
 		%script{:type => "text/javascript", :src => "/js/jquery.min.js"}
 		%script{:type => "text/javascript", :src => "/js/soundmanager2.js"}
+		%script{:type => "text/javascript", :src => "/js/jquery.jscrollpane.min.js"}
+		%script{:type => "text/javascript", :src => "/js/jquery.mousewheel.js"}
+		%script{:type => "text/javascript", :src => "/js/modernizr.js"}
+		%script{:type => "text/javascript", :src => "/js/jquery.getimagedata.min.js"}
+		%script{:type => "text/javascript", :src => "/js/jquery.color.min.js"}
 		%script{:type => "text/javascript", :src => "/js/application.js"}
-		
+	
+		%link{:rel => "stylesheet", :href => "/stylesheets/application.css", :type => 'text/css', :media => "screen"}
+		%link{:rel => "stylesheet", :href => "/stylesheets/theme.css", :type => 'text/css', :media => "screen"}
+	
 	%body
 	
-		Lorem Ipsum
+		.header
+	
+			.time
+		
+				.track
+		
+				.buffer
+			
+				.played
+				
+				%canvas#waveform
+
+				.waveform
+
+					%img
+					
+				.seekhead
+				
+			.comments			
+	
+		.player
+		
+			.panel.right
+			
+				.avatar
+				
+				.description
+			
+				%ol.tracks
+			
+			.panel.left
+			
+				.artwork
+				
+					.button
+						
+						.play
+						
+		.footer
+						
+			.share
+		
+				<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>	
+				<iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fbelong.heroku.com&amp;layout=button_count&amp;show_faces=false&amp;width=90&amp;action=like&amp;colorscheme=light&amp;height=20" scrolling="no" frameborder="0" class="facebook-like-button" style="border:none; overflow:hidden; width:90px; height:20px;" allowTransparency="true"></iframe>
+				
+			.links
+		
+				%a{:href => "http://www.dominorecordco.com/uk/albums/11-01-11/queens-of-the-stone-age/"} Buy it Now
+				%a{:href => "http://www.rekordsrekords.com/news"} Enter Site
+		
+			.logo
+				%a{:href => "http://soundcloud.com/qotsa", :target => "_blank"}
+					%img{:src => "/images/soundcloud.png", :border => 0}
+					
+		.message

@@ -1,0 +1,80 @@
+@-webkit-keyframes 'glow' {
+  0% {
+    -webkit-box-shadow: 0 0 5px rgba(225, 225, 225, 0.3); }
+
+  100% {
+    -webkit-box-shadow: 0 0 20px #ffe1e1; } }
+
+body {
+  background: white url(/images/bg.jpg) center center no-repeat;
+  color: black;
+  font: 12px Futura, Helvetica, sans-serif;
+  text-transform: uppercase; }
+  body a {
+    color: black;
+    text-decoration: none;
+    -webkit-transition: color 1s; }
+    body a:hover {
+      color: #ad2790; }
+  body .header .time .buffer {
+    background: #cccccc;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#cccccc), to(#cccccc), color-stop(0.4, #e6e6e6), color-stop(0.6, #e6e6e6));
+    background: -moz-linear-gradient(top, #cccccc, #e6e6e6 40%, #e6e6e6 60%, #cccccc); }
+  body .header .time .played {
+    background: #ad2790;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ad2790), to(#ad2790), color-stop(0.4, #d235b0), color-stop(0.6, #d235b0));
+    background: -moz-linear-gradient(top, #ad2790, #d235b0 40%, #d235b0 60%, #ad2790); }
+  body .header .comments {
+    background-color: rgba(255, 255, 255, 0.8); }
+    body .header .comments .comment {
+      border-left: 1px solid white;
+      -webkit-transition: border-color 1s; }
+  body .player .panel {
+    background-color: white;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0 0 50px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 0 0 50px rgba(0, 0, 0, 0.25); }
+    body .player .panel, body .player .panel .artwork {
+      border-radius: 10px;
+      -moz-border-radius: 10px;
+      -webkit-border-radius: 10px; }
+    body .player .panel.left .artwork .button {
+      border: 3px solid #FFF;
+      border-radius: 100px;
+      -moz-border-radius: 100px;
+      -webkit-border-radius: 100px;
+      -webkit-animation-name: 'glow';
+      -webkit-animation-duration: 1s;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-direction: alternate;
+      -webkit-animation-timing-function: ease-in-out; }
+      body .player .panel.left .artwork .button .play {
+        background-image: url(/images/play.png); }
+    body .player .panel.right ol.tracks li {
+      -webkit-transition-property: background;
+      -webkit-transition-duration: 2s; }
+      body .player .panel.right ol.tracks li:nth-child(odd) {
+        background-color: #f2f2f2; }
+      body .player .panel.right ol.tracks li.playing {
+        background-color: #ad2790;
+        color: white; }
+  body .footer {
+    background-color: white; }
+  body .message {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    color: white; }
+  body .jspDrag {
+    background: #cccccc; }
+
+.no-canvas .time {
+  background-color: #f2f2f2 !important; }
+  .no-canvas .time .track {
+    background-color: white; }
+
+.canvas .time {
+  background-color: white; }
+  .canvas .time .track {
+    background-color: #f2f2f2; }

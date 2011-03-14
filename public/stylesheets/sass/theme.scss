@@ -1,0 +1,200 @@
+$radius: 10px;
+
+$accent-color: #ad2790;
+$background-color: #FFFFFF;
+$border-color: whiteSmoke;
+$scroll-color: #CCCCCC;
+$text-color: #000000;
+
+@mixin background-gradient($color){
+	background: $color;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from($color), to($color), color-stop(.4,lighten($color, 10%)), color-stop(.6,lighten($color, 10%)));
+	background: -moz-linear-gradient(top, $color, lighten($color, 10%) 40%, lighten($color, 10%) 60%, $color);	
+}
+@mixin border-radius($size){
+	border-radius: $size; 
+	-moz-border-radius: $size;
+	-webkit-border-radius: $size;
+	// add ie border...
+}
+@mixin box-shadow{
+	box-shadow: 0 0 50px rgba(0,0,0,0.25);
+	-moz-box-shadow: 0 0 50px rgba(0,0,0,0.25);
+	-webkit-box-shadow: 0 0 50px rgba(0,0,0,0.25);
+}
+@mixin background-lighten($color, $amount){
+	
+	@if lightness($color) < 50% { 
+		background-color: lighten($color, $amount);
+	} @else { 
+		background-color: darken($color, $amount);
+	}
+	
+}
+
+@-webkit-keyframes 'glow'{
+  0% { -webkit-box-shadow: 0 0 5px rgba(225,225,225,.3); }
+  100% { -webkit-box-shadow: 0 0 20px rgba(255,225,225,1); }
+}
+
+body{
+	
+	background: $background-color url(/images/bg.jpg) center center no-repeat;
+	color: $text-color;
+	font: 12px Futura, Helvetica, sans-serif;
+	text-transform: uppercase;
+	
+	a{
+		
+		color: $text-color;
+		text-decoration: none;
+		-webkit-transition: color 1s;
+		
+		&:hover{ color: $accent-color; }
+		
+	}
+	
+	// Header
+	
+	.header{
+		
+		.time{
+			
+			.buffer{
+				
+				@if lightness($background-color) < 50% { @include background-gradient( lighten($background-color, 20%) );
+					
+				} @else { @include background-gradient( darken($background-color, 20%) ); }
+				
+			}
+
+			.played{ @include background-gradient($accent-color); }
+			
+		}
+		
+		.comments{
+			
+			background-color: transparentize($background-color, 0.2);
+			
+			.comment{
+				
+				border-left: 1px solid $background-color;
+				-webkit-transition: border-color 1s;
+				
+			}
+			
+		}
+		
+	}
+	
+	// Player
+	
+	.player{
+		
+		.panel{
+
+			background-color: $background-color;
+			@include box-shadow;
+			
+			&, .artwork{ @include border-radius($radius); }
+			
+			// Left Panel
+			
+			&.left{
+				
+				.artwork{
+					
+					.button{
+
+						border: 3px solid #FFF;
+						@include border-radius(100px);				
+						-webkit-animation-name: 'glow';
+					  -webkit-animation-duration: 1s;
+					  -webkit-animation-iteration-count: infinite;
+					  -webkit-animation-direction: alternate;
+					  -webkit-animation-timing-function: ease-in-out;
+					
+						.play{ background-image: url(/images/play.png); }
+						
+					}
+					
+				}
+				
+			}
+			
+			// Right Panel
+			
+			&.right{
+				
+				ol.tracks li{
+				
+					-webkit-transition-property: background;
+					-webkit-transition-duration: 2s;
+					
+					&:nth-child(odd){ @include background-lighten($background-color, 5%); }
+					
+					&.playing{
+						
+						background-color: $accent-color;
+						color: white;
+						
+					}
+					
+				}
+				
+			}
+			
+		}
+		
+	}
+	
+	// Footer
+	
+	.footer{
+		
+		background-color: $background-color;
+		
+	}
+	
+	// Message
+	
+	.message{
+
+		background-color: rgba(0,0,0,0.5);
+		@include border-radius(10px);
+		color: white;
+
+	}
+	
+	// Scroll Bar
+	
+	.jspDrag{
+		
+		background: $scroll-color;
+		
+	}
+	
+}
+
+// Modernizr Fixes
+
+// No Canvas
+
+.no-canvas .time{
+	
+	background-color: #f2f2f2 !important;
+	
+	.track{ background-color: $background-color; }
+	
+}
+
+
+// Yes Canvas
+
+.canvas .time{
+	
+	background-color: $background-color;
+	
+	.track{ @include background-lighten($background-color, 5%); }
+	
+}

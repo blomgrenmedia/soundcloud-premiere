@@ -1,0 +1,284 @@
+$panel: 300px;
+$padding: 10px;
+$button: 75px;
+$avatar: 47px;
+$scroll: 10px;
+$comments: 18px;
+$time: 50px;
+$waveform: 40px;
+
+@mixin background-size{
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+*{ margin: 0; padding: 0; outline: none; }
+
+html, body{ height: 100%; overflow: hidden; }
+
+body{
+	
+	@include background-size;
+	
+	& > div{ position: absolute; }
+	
+	// Header
+	
+	.header{
+
+		height: $comments + $time;
+
+		div, canvas{ position: absolute; }
+
+		&, & > div{ width: 100%; }
+
+		// Time
+
+		.time{
+
+			cursor: pointer;
+			height: $time;
+			overflow: hidden;
+			top: $comments;
+
+			div{ display: none; }
+
+			div, canvas, img{
+
+				height: $waveform;
+				top: ($time - $waveform) / 2;
+				width: 100%;
+
+			}
+
+			.buffer, .played{ width: 0; }
+
+		}
+
+		// Comments
+
+		.comments{
+
+			cursor: pointer;
+			height: $comments;
+
+			.comment{
+
+				cursor: pointer;
+				height: $time + $comments;
+				width: $comments;
+
+				.avatar{
+
+					@include background-size;
+					height: $comments;
+					width: $comments;
+
+				}
+
+			}
+
+		}
+
+	}
+	
+	// Player
+	
+	.player{
+		
+		width: $panel * 2;
+
+		&, .panel{ height: $panel; }
+		
+		.panel{
+			
+			left: $panel / 2;
+			width: $panel;
+			
+			&, & > div{ position: absolute; }
+			
+			& > div {
+
+				height: $panel - $padding * 2;
+				left: $padding;
+				top: $padding;
+				width: $panel - $padding * 2;
+
+			}
+			
+			// Left Panel
+			
+			&.left{
+				
+				.artwork{			
+
+					@include background-size;
+					display: none;
+				
+					.button{
+						
+						cursor: pointer;
+						left: ($panel - $padding * 2) / 2 - $button / 2;
+						position: absolute;
+						top: ($panel - $padding * 2) / 2 - $button / 2;
+						
+						&, .play{
+							height: $button;
+							width: $button;
+						}
+						
+					}
+					
+				}	
+				
+			}
+			
+			// Right Panel
+			
+			&.right{
+				
+				// Playlist Avatar
+				
+				.avatar{
+					height: $avatar;
+					width: $avatar;
+				}
+				
+				// Descriptions
+				
+				.description{
+
+					height: $avatar - 10;
+					left: $avatar + 20;
+					top: 15px;
+					width: $panel - 10 - $avatar - $padding * 2;
+
+				}
+				
+				// Tracks
+				
+				ol.tracks {
+					
+					height: $panel - $padding * 2 - $avatar - 10;
+					left: $padding;
+					list-style: none;
+					overflow: auto;
+					position: absolute;
+					top: $padding + $avatar + 10;
+					width: $panel - $padding * 2;
+					
+					li{
+						
+						cursor: pointer;
+						height: 25px;
+						line-height: 25px;
+						overflow: hidden;
+						padding-left: 10px;
+						text-overflow: ellipsis;
+						
+					}
+
+				}
+				
+			}
+			
+		}
+		
+	}
+	
+	// Footer
+	
+	.footer{
+		
+		bottom: $comments;
+		height: $time;
+		width: 100%;
+		
+		div{
+			bottom: 17px;
+			position: absolute;
+		}
+		
+		// Links
+		
+		.links{ left: 20px; a{ margin-right: 10px; } }
+		
+		// Share Buttons
+		
+		.share{
+
+			width: 200px;
+
+			.facebook-like-button{
+				left: 110px;
+				position: absolute;
+				top: 0px;
+			}
+
+		}
+		
+		// SoundCloud Logo
+		
+		.logo{ right: 20px; }
+		
+	}
+	
+	// Message
+	
+	.message{
+
+		display: none;
+		height: 50px;
+		padding: 10px;
+		top: 36px;
+		width: 250px;
+
+	}
+
+	// Scroll Bar
+	
+	.jspContainer{
+
+		overflow: hidden;
+		position: relative;
+
+		.jspPane{ position: absolute; }
+
+		.jspVerticalBar{
+
+			height: 100%;
+			position: absolute;		
+			right: 0;
+			top: 0;
+			width: $scroll;
+
+			& *{ margin: 0; padding: 0; }
+
+			.jspCap{ display: none; }
+
+			.jspTrack{
+
+				position: relative;
+
+				.jspDrag{
+
+					cursor: pointer;
+					left: 0;
+					position: relative;
+					top: 0;
+
+				}
+
+			}		
+
+		}
+
+	}
+	
+}
+
+// Modernizr Fix
+
+.canvas .time .waveform{ display: none; }
