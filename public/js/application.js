@@ -228,11 +228,11 @@ $(function(){
 									
 									clearTimeout(messageTimer);
 									
-									messageTimer = setTimeout("$('.message').fadeOut()", 3000);
+									messageTimer = setTimeout("$('.message').fadeOut();", 3000);
 									
 									position = comment.timestamp / track.duration * 100;
 
-									$('.message').empty().fadeIn().text(comment.body).css('left', position + '%');
+									$('.message').empty().show().text(comment.body).css('left', position + '%');
 
 								});
 
