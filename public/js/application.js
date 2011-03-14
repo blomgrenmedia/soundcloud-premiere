@@ -204,7 +204,7 @@ $(function(){
 					
 					// Get track comments from SoundCloud
 
-					$.getJSON("http://api.soundcloud.com/tracks/" + track.id + "/comments.json?offset=" + offset + "&consumer_key=" + consumer_key, function(comments){
+					$.getJSON("http://api.soundcloud.com/tracks/" + track.id + "/comments.json?offset=" + offset + "&consumer_key=" + consumer_key + '&callback=?', function(comments){
 						
 						// Loop through each comment
 						
