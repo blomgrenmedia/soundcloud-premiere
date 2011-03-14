@@ -441,7 +441,13 @@ $(function(){
 			
 		} else {
 			
-			$('.waveform img').attr('src', waveform_url);
+			$('.time div').fadeOut('fast', function(){
+			
+				$('.waveform img').attr('src', waveform_url);
+				
+				$('.time div').fadeIn();
+				
+			});
 			
 		}	
 		
