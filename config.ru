@@ -33,8 +33,6 @@ class App < Sinatra::Base
     
     url = CGI::unescape(params[:url])
     
-    puts url
-    
     # Get the contents of the URL
     
     image = Net::HTTP.get_response(URI.parse(url)).body

@@ -422,8 +422,6 @@ $(function(){
 						image.width = data.width;
 						image.height = data.height;
 						
-						//console.log(image);
-						
 						context.drawImage(image, 0, 0, context.canvas.width, context.canvas.height);
 
 						var imgd = context.getImageData(0, 0, context.canvas.width, context.canvas.height);
@@ -443,64 +441,8 @@ $(function(){
 						$('.track, .buffer, .played').fadeIn('fast');
 						
 					}
-					
-					//console.log(image);
-					
-					/*context.drawImage(image, 0, 0, context.canvas.width, context.canvas.height);
-
-					var imgd = context.getImageData(0, 0, context.canvas.width, context.canvas.height);
-
-					var pix = imgd.data;
-
-					for (var i = 0, n = pix.length; i < n; i += 4) {
-
-						pix[i] = waveform_color[0]; // red
-						pix[i+1] = waveform_color[1]; // green
-						pix[i+2] = waveform_color[2]; // blue
-
-					}
-
-					context.putImageData(imgd, 0, 0);
-
-					$('.track, .buffer, .played').fadeIn('fast');*/
 					
 				});
-
-				/*$.getImageData({
-
-				  url: waveform_url,
-
-				  success: function(image){
-					
-						console.log(image);
-
-						context.drawImage(image, 0, 0, context.canvas.width, context.canvas.height);
-
-						var imgd = context.getImageData(0, 0, context.canvas.width, context.canvas.height);
-
-						var pix = imgd.data;
-
-						for (var i = 0, n = pix.length; i < n; i += 4) {
-
-							pix[i] = waveform_color[0]; // red
-							pix[i+1] = waveform_color[1]; // green
-							pix[i+2] = waveform_color[2]; // blue
-
-						}
-
-						context.putImageData(imgd, 0, 0);
-
-						$('.track, .buffer, .played').fadeIn('fast');
-
-				  },
-
-				  error: function(xhr, text_status){
-					
-						console.log(text_status);
-					
-					}
-
-				});*/
 
 			});
 			
