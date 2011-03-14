@@ -95,7 +95,7 @@ body{
 			background-color: $background-color;
 			@include box-shadow;
 			
-			&, .artwork{ @include border-radius($radius); }
+			&, .artwork, .artwork img{ @include border-radius($radius); }
 			
 			// Left Panel
 			

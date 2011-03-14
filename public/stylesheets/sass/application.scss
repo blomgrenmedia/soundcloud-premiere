@@ -99,7 +99,7 @@ body{
 			
 			&, & > div{ position: absolute; }
 			
-			& > div {
+			& > div, & .artwork img {
 
 				height: $panel - $padding * 2;
 				left: $padding;
@@ -112,7 +112,7 @@ body{
 			
 			&.left{
 				
-				.artwork{			
+				.artwork{	
 
 					@include background-size;
 					display: none;
@@ -282,3 +282,7 @@ body{
 // Modernizr Fix
 
 .canvas .time .waveform{ display: none; }
+
+.backgroundsize .player .artwork img{ display: none; }
+
+.backgroundsize .player .avatar img{ display: none; }

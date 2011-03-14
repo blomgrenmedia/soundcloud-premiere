@@ -56,7 +56,7 @@ body {
       width: 300px; }
       body .player .panel, body .player .panel > div {
         position: absolute; }
-      body .player .panel > div {
+      body .player .panel > div, body .player .panel .artwork img {
         height: 280px;
         left: 10px;
         top: 10px;
@@ -148,4 +148,7 @@ body {
           top: 0; }
 
 .canvas .time .waveform {
+  display: none; }
+
+.backgroundsize .player .artwork img {
   display: none; }

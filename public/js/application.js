@@ -61,7 +61,13 @@ $(function(){
 			
 			// Once playlist data is loaded, apply the artwork, user avatar, and user username to the player.
 			
-			$('.artwork').css('background-image', 'url(' + playlist.artwork_url.replace('-large', '-crop') + ')').fadeIn('slow');
+			$('.artwork img').attr('src', playlist.artwork_url.replace('-large', '-crop'));
+			
+			$('.artwork').css('background-image', 'url(' + playlist.artwork_url.replace('-large', '-crop') + ')');
+			
+			$('.artwork').fadeIn('slow');
+			
+			$('.avatar img').attr('src', playlist.user.avatar_url.replace('-large', '-badge'));
 			
 			$('.avatar').css('background-image', 'url(' + playlist.user.avatar_url.replace('-large', '-badge') + ')');
 			
