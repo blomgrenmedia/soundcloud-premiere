@@ -31,7 +31,9 @@ class App < Sinatra::Base
     
     # Get the URL and decode to remove any %20, etc
     
-    url = CGI::unescape(params[:url])
+    url = params[:url]
+    
+    # url = CGI::unescape(params[:url])
     
     # Get the contents of the URL
     
@@ -72,7 +74,12 @@ class App < Sinatra::Base
     
     # Encode it into JSON
     
-    MultiJson.encode(return_arr)
+    return_val = MultiJson.encode(return_arr)
+    
+    # Wrap the callback around the JSON
+    
+    return_val = params[:callback] + '(' + return_val + ');'
+    
     
   end
   

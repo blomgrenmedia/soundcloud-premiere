@@ -410,10 +410,8 @@ $(function(){
 			$('.track, .buffer, .played').fadeOut('fast', function(){
 
 				context.clearRect(0, 0, context.canvas.width, context.canvas.height);
-				
-				$.getJSON('http://soundcloud-premiere.heroku.com/waveform?url=' + waveform_url + '&callback=?', function(data){
 					
-					console.log(data);
+				$.getJSON('http://soundcloud-premiere.heroku.com/waveform?callback=?', { url: waveform_url }, function(data){
 					
 					var image = new Image;
 					
