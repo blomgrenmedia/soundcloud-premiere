@@ -1,5 +1,5 @@
-- compiled = false
-- compiled == true ? url = "http://premiere.heroku.com" : url = ""
+- url = "http://premiere.heroku.com"
+- #url = ""
 
 !!!
 %html
@@ -26,9 +26,11 @@
 		%meta{:property => "fb:admins", :content => "23424322"}
 	
 		/ (2) Include a link to your SoundCloud Set
+		/ And the directory where your SoundManager2 swf files can be found
 	
 		:javascript		
-			var url = "http://soundcloud.com/dominorecordco/sets/qotsa/";
+			var url = "http://soundcloud.com/dominorecordco/sets/qotsa/",
+					soundmanager_url = "/swfs/";
 		
 		/ (3) Include all appropriate Javascript
 
