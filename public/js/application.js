@@ -14,7 +14,7 @@ var consumer_key = "ePT3qXXTOjw4ZoZcN7ALQ",
 
 // Set a few default options for SoundManager2
 
-soundManager.url = '/swfs/';
+soundManager.url = soundmanager_url + '/swfs/';
 soundManager.flashVersion = 9;
 soundManager.useFlashBlock = false;
 soundManager.useHighPerformance = true;
