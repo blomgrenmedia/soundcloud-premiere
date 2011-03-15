@@ -6,7 +6,7 @@
     -webkit-box-shadow: 0 0 20px #ffe1e1; } }
 
 body {
-  background: white url(/images/bg.jpg) center center no-repeat;
+  background: white url(http://premiere.heroku.com/images/bg.jpg) center center no-repeat;
   color: black;
   font: 12px Futura, Helvetica, sans-serif;
   text-transform: uppercase; }
