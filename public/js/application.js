@@ -370,7 +370,7 @@ $(function(){
 			
 			if (event.target.className == 'comments') {
 			
-				track = $('li:first').data('track');
+				track = $('li.active').data('track');
 			
 				relative = Math.round(event.pageX / $(window).width() * track.duration);
 				
