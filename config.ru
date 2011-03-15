@@ -85,5 +85,5 @@ class App < Sinatra::Base
   
 end
 
-use Rack::Static, :urls => ["/stylesheets", "/images", "/js", "/swfs", "/docs"], :root => "public"
+use Rack::Static, :urls => ["/stylesheets", "/images", "/js", "/swfs", "/docs", "/example"], :root => "public"
 run App
