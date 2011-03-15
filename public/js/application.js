@@ -14,7 +14,7 @@ var consumer_key = "ePT3qXXTOjw4ZoZcN7ALQ",
 
 // Set a few default options for SoundManager2
 
-soundManager.url = '/swfs/';
+soundManager.url = 'http://premiere.heroku.com/swfs/';
 soundManager.flashVersion = 9;
 soundManager.useFlashBlock = false;
 soundManager.useHighPerformance = true;
@@ -411,7 +411,7 @@ $(function(){
 
 				context.clearRect(0, 0, context.canvas.width, context.canvas.height);
 					
-				$.getJSON('http://soundcloud-premiere.heroku.com/waveform?callback=?', { url: waveform_url }, function(data){
+				$.getJSON('http://premiere.heroku.com/waveform?callback=?', { url: waveform_url }, function(data){
 					
 					var image = new Image;
 					

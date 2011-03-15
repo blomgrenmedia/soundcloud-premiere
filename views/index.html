@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>Queens of the Stone Age</title>
+    <link href='/favicon.ico' rel='shortcut icon' type='image/x-icon' />
+    <meta content='width=800,user-scalable=no' name='viewport' />
+    <!-- Adjust the following meta data which will be passed to Facebook when clicking the Like button -->
+    <!-- Album title -->
+    <meta content='QOTSA' property='og:title' />
+    <!-- Album description -->
+    <meta content='QOTSA remastered with b-sides.' property='og:description' />
+    <!-- Content type, album should suffice -->
+    <meta content='album' property='og:type' />
+    <!-- Direct link to album cover image -->
+    <meta content='http://qotsa.heroku.com/images/artwork.jpg' property='og:image' />
+    <!-- Link to url where premiere resides (this page) -->
+    <meta content='http://qotsa.heroku.com' property='og:url' />
+    <!-- Name of site or in this case, band -->
+    <meta content='Queens of the Stone Age' property='og:site_name' />
+    <!-- Edit the url in this property to include a link to your SoundCloud set -->
+    <meta content='http://player.soundcloud.com/player.swf?url=http://soundcloud.com/dominorecordco/sets/qotsa/&amp;color=000000&amp;auto_play=true&amp;player_type=artwork' property='og:video' />
+    <!-- Defaults regarding height, width, and video type -->
+    <meta content='425' property='og:video:height' />
+    <meta content='425' property='og:video:width' />
+    <meta content='application/x-shockwave-flash' property='og:video:type' />
+    <!-- Adjust to include your personal or page Facebook ID -->
+    <meta content='23424322' property='fb:admins' />
+    <!-- Include a link to your SoundCloud Set -->
+    <script type='text/javascript'>
+      //<![CDATA[
+        var url = "http://soundcloud.com/dominorecordco/sets/qotsa/";
+      //]]>
+    </script>
+    <!-- Include all appropriate Javascript -->
+    <script src='http://premiere.heroku.com/js/jquery.min.js' type='text/javascript'></script>
+    <script src='http://premiere.heroku.com/js/soundmanager2.js' type='text/javascript'></script>
+    <script src='http://premiere.heroku.com/js/jquery.jscrollpane.min.js' type='text/javascript'></script>
+    <script src='http://premiere.heroku.com/js/jquery.mousewheel.js' type='text/javascript'></script>
+    <script src='http://premiere.heroku.com/js/modernizr.js' type='text/javascript'></script>
+    <script src='http://premiere.heroku.com/js/jquery.color.min.js' type='text/javascript'></script>
+    <script src='http://premiere.heroku.com/js/application.js' type='text/javascript'></script>
+    <!-- Include both stylesheets -->
+    <link href='http://premiere.heroku.com/stylesheets/application.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='http://premiere.heroku.com/stylesheets/theme.css' media='screen' rel='stylesheet' type='text/css' />
+  </head>
+  <body>
+    <!-- Header includes comments, the timespan, and waveform -->
+    <div class='header'>
+      <div class='time'>
+        <div class='track'></div>
+        <div class='buffer'></div>
+        <div class='played'></div>
+        <canvas id='waveform'></canvas>
+        <div class='waveform'>
+          <img />
+        </div>
+        <div class='seekhead'></div>
+      </div>
+      <div class='comments'></div>
+    </div>
+    <!-- Includes player, both panels (left & right), and tracklist -->
+    <div class='player'>
+      <div class='panel right'>
+        <div class='avatar'>
+          <img />
+        </div>
+        <div class='description'></div>
+        <ol class='tracks'></ol>
+      </div>
+      <div class='panel left'>
+        <div class='artwork'>
+          <img />
+          <div class='button'>
+            <div class='play'></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Includes left links, share buttons, and right links -->
+    <!-- Be sure to edit the tweet & like buttons within -->
+    <div class='footer'>
+      <div class='share'>
+        <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+        <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fqotsa.heroku.com&amp;layout=button_count&amp;show_faces=false&amp;width=90&amp;action=like&amp;colorscheme=light&amp;height=20" scrolling="no" frameborder="0" class="facebook-like-button" style="border:none; overflow:hidden; width:90px; height:20px;" allowTransparency="true"></iframe>
+      </div>
+      <div class='links'>
+        <a href='http://www.dominorecordco.com/uk/albums/11-01-11/queens-of-the-stone-age/' target='_blank'>Buy it Now</a>
+        <a href='http://www.rekordsrekords.com/news' target='_blank'>Enter Site</a>
+      </div>
+      <div class='logo'>
+        <a href='http://soundcloud.com/qotsa' target='_blank'>
+          <img border='0' src='http://premiere.heroku.com/images/soundcloud.png' />
+        </a>
+      </div>
+    </div>
+    <!-- This is used for displaying comments beneath the header -->
+    <div class='message'></div>
+  </body>
+</html>
