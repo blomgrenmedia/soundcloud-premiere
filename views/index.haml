@@ -1,124 +1,58 @@
+- compiled = true
+- compiled == true ? url = "http://premiere.heroku.com" : url = ""
+
 !!!
 %html
 	%head
 	
 		%title Queens of the Stone Age
 		
-		%link{:rel => "shortcut icon", :href => "/favicon.ico", :type => "image/x-icon"}
-		
 		%meta{:name => "viewport", :content => "width=800,user-scalable=no"}
 		
-		/ Adjust the following meta data which will be passed to Facebook when clicking the Like button
-		
-		/ Album title
+		/ (1) Adjust the following meta data which will be passed to Facebook when clicking the Like button
+		/ Making sure to edit the url in the 'og:video' property
+		/ And adjusting to include your personal or page Facebook ID in the 'fb:admins' property
 		
 		%meta{:property => "og:title", :content => "QOTSA"}
-		
-		/ Album description
-		
 		%meta{:property => "og:description", :content => 'QOTSA remastered with b-sides.'}
-		
-		/ Content type, album should suffice
-				
 		%meta{:property => "og:type", :content => "album"}
-		
-		/ Direct link to album cover image
-		
 		%meta{:property => "og:image", :content => "http://qotsa.heroku.com/images/artwork.jpg"}
-		
-		/ Link to url where premiere resides (this page)
-		
 		%meta{:property => "og:url", :content => "http://qotsa.heroku.com"}
-		
-		/ Name of site or in this case, band
-		
-		%meta{:property => "og:site_name", :content => "Queens of the Stone Age"}				
-		
-		/ Edit the url in this property to include a link to your SoundCloud set
-		
+		%meta{:property => "og:site_name", :content => "Queens of the Stone Age"}
 		%meta{:property => "og:video", :content => "http://player.soundcloud.com/player.swf?url=http://soundcloud.com/dominorecordco/sets/qotsa/&amp;color=000000&amp;auto_play=true&amp;player_type=artwork"}
-		
-		/ Defaults regarding height, width, and video type
-		
 		%meta{:property => "og:video:height", :content => "425"}
 		%meta{:property => "og:video:width", :content => "425"}
-		%meta{:property => "og:video:type", :content => "application/x-shockwave-flash"}
-		
-		/ Adjust to include your personal or page Facebook ID
-		
+		%meta{:property => "og:video:type", :content => "application/x-shockwave-flash"}		
 		%meta{:property => "fb:admins", :content => "23424322"}
 	
-		/ Include a link to your SoundCloud Set
+		/ (2) Include a link to your SoundCloud Set
 	
-		:javascript
-		
+		:javascript		
 			var url = "http://soundcloud.com/dominorecordco/sets/qotsa/";
 		
-		/ Include all appropriate Javascript
+		/ (3) Include all appropriate Javascript
 
-		%script{:type => "text/javascript", :src => "/js/jquery.min.js"}
-		%script{:type => "text/javascript", :src => "/js/soundmanager2.js"}
-		%script{:type => "text/javascript", :src => "/js/jquery.jscrollpane.min.js"}
-		%script{:type => "text/javascript", :src => "/js/jquery.mousewheel.js"}
-		%script{:type => "text/javascript", :src => "/js/modernizr.js"}
-		%script{:type => "text/javascript", :src => "/js/jquery.color.min.js"}
-		%script{:type => "text/javascript", :src => "/js/application.js"}
+		%script{:type => "text/javascript", :src => "#{url}/js/jquery.min.js"}
+		%script{:type => "text/javascript", :src => "#{url}/js/soundmanager2.js"}
+		%script{:type => "text/javascript", :src => "#{url}/js/jquery.jscrollpane.min.js"}
+		%script{:type => "text/javascript", :src => "#{url}/js/jquery.mousewheel.js"}
+		%script{:type => "text/javascript", :src => "#{url}/js/modernizr.js"}
+		%script{:type => "text/javascript", :src => "#{url}/js/jquery.color.min.js"}
+		%script{:type => "text/javascript", :src => "#{url}/js/application.js"}
 		
-		/ Include both stylesheets
+		/ (4) Include both stylesheets
+		/ Add your custom css in the provided area below or simply locally adjust theme.css accordingly
+		/ For rapid theme development, check the theme.scss file provided here: 
 	
-		%link{:rel => "stylesheet", :href => "/stylesheets/application.css", :type => 'text/css', :media => "screen"}
-		%link{:rel => "stylesheet", :href => "/stylesheets/theme.css", :type => 'text/css', :media => "screen"}
+		%link{:rel => "stylesheet", :href => "#{url}/stylesheets/application.css", :type => 'text/css', :media => "screen"}
+		%link{:rel => "stylesheet", :href => "#{url}/stylesheets/theme.css", :type => 'text/css', :media => "screen"}
+		
+		:css			
+			/* body{ background-image: url(image.jpg); } */
 	
 	%body
 	
-		/ Header includes comments, the timespan, and waveform
-	
-		.header
-	
-			.time
-
-				.track
-	
-				.buffer
-			
-				.played
-				
-				%canvas#waveform
-
-				.waveform
-
-					%img
-					
-				.seekhead
-				
-			.comments			
-	
-		/ Includes player, both panels (left & right), and tracklist
-	
-		.player
-		
-			.panel.right
-			
-				.avatar
-				
-					%img
-				
-				.description
-			
-				%ol.tracks
-			
-			.panel.left
-			
-				.artwork
-				
-					%img
-				
-					.button
-						
-						.play
-		
-		/ Includes left links, share buttons, and right links
-		/ Be sure to edit the tweet & like buttons within
+		/ (5) Be sure to edit the links and share widgets within
 				
 		.footer
 						
@@ -136,6 +70,3 @@
 				%a{:href => "http://soundcloud.com/qotsa", :target => "_blank"}
 					%img{:src => "/images/soundcloud.png", :border => 0}
 		
-		/ This is used for displaying comments beneath the header 
-			
-		.message

@@ -2,36 +2,28 @@
 <html>
   <head>
     <title>Queens of the Stone Age</title>
-    <link href='/favicon.ico' rel='shortcut icon' type='image/x-icon' />
     <meta content='width=800,user-scalable=no' name='viewport' />
-    <!-- Adjust the following meta data which will be passed to Facebook when clicking the Like button -->
-    <!-- Album title -->
+    <!-- (1) Adjust the following meta data which will be passed to Facebook when clicking the Like button -->
+    <!-- Making sure to edit the url in the 'og:video' property -->
+    <!-- And adjusting to include your personal or page Facebook ID in the 'fb:admins' property -->
     <meta content='QOTSA' property='og:title' />
-    <!-- Album description -->
     <meta content='QOTSA remastered with b-sides.' property='og:description' />
-    <!-- Content type, album should suffice -->
     <meta content='album' property='og:type' />
-    <!-- Direct link to album cover image -->
     <meta content='http://qotsa.heroku.com/images/artwork.jpg' property='og:image' />
-    <!-- Link to url where premiere resides (this page) -->
     <meta content='http://qotsa.heroku.com' property='og:url' />
-    <!-- Name of site or in this case, band -->
     <meta content='Queens of the Stone Age' property='og:site_name' />
-    <!-- Edit the url in this property to include a link to your SoundCloud set -->
     <meta content='http://player.soundcloud.com/player.swf?url=http://soundcloud.com/dominorecordco/sets/qotsa/&amp;color=000000&amp;auto_play=true&amp;player_type=artwork' property='og:video' />
-    <!-- Defaults regarding height, width, and video type -->
     <meta content='425' property='og:video:height' />
     <meta content='425' property='og:video:width' />
     <meta content='application/x-shockwave-flash' property='og:video:type' />
-    <!-- Adjust to include your personal or page Facebook ID -->
     <meta content='23424322' property='fb:admins' />
-    <!-- Include a link to your SoundCloud Set -->
+    <!-- (2) Include a link to your SoundCloud Set -->
     <script type='text/javascript'>
       //<![CDATA[
         var url = "http://soundcloud.com/dominorecordco/sets/qotsa/";
       //]]>
     </script>
-    <!-- Include all appropriate Javascript -->
+    <!-- (3) Include all appropriate Javascript -->
     <script src='http://premiere.heroku.com/js/jquery.min.js' type='text/javascript'></script>
     <script src='http://premiere.heroku.com/js/soundmanager2.js' type='text/javascript'></script>
     <script src='http://premiere.heroku.com/js/jquery.jscrollpane.min.js' type='text/javascript'></script>
@@ -39,45 +31,19 @@
     <script src='http://premiere.heroku.com/js/modernizr.js' type='text/javascript'></script>
     <script src='http://premiere.heroku.com/js/jquery.color.min.js' type='text/javascript'></script>
     <script src='http://premiere.heroku.com/js/application.js' type='text/javascript'></script>
-    <!-- Include both stylesheets -->
+    <!-- (4) Include both stylesheets -->
+    <!-- Add your custom css in the provided area below or simply locally adjust theme.css accordingly -->
+    <!-- For rapid theme development, check the theme.scss file provided here: -->
     <link href='http://premiere.heroku.com/stylesheets/application.css' media='screen' rel='stylesheet' type='text/css' />
     <link href='http://premiere.heroku.com/stylesheets/theme.css' media='screen' rel='stylesheet' type='text/css' />
+    <style type='text/css'>
+      /*<![CDATA[*/
+        /* body{ background-image: url(image.jpg); } */
+      /*]]>*/
+    </style>
   </head>
   <body>
-    <!-- Header includes comments, the timespan, and waveform -->
-    <div class='header'>
-      <div class='time'>
-        <div class='track'></div>
-        <div class='buffer'></div>
-        <div class='played'></div>
-        <canvas id='waveform'></canvas>
-        <div class='waveform'>
-          <img />
-        </div>
-        <div class='seekhead'></div>
-      </div>
-      <div class='comments'></div>
-    </div>
-    <!-- Includes player, both panels (left & right), and tracklist -->
-    <div class='player'>
-      <div class='panel right'>
-        <div class='avatar'>
-          <img />
-        </div>
-        <div class='description'></div>
-        <ol class='tracks'></ol>
-      </div>
-      <div class='panel left'>
-        <div class='artwork'>
-          <img />
-          <div class='button'>
-            <div class='play'></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Includes left links, share buttons, and right links -->
-    <!-- Be sure to edit the tweet & like buttons within -->
+    <!-- (5) Be sure to edit the links and share widgets within -->
     <div class='footer'>
       <div class='share'>
         <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
@@ -89,11 +55,9 @@
       </div>
       <div class='logo'>
         <a href='http://soundcloud.com/qotsa' target='_blank'>
-          <img border='0' src='http://premiere.heroku.com/images/soundcloud.png' />
+          <img border='0' src='/images/soundcloud.png' />
         </a>
       </div>
     </div>
-    <!-- This is used for displaying comments beneath the header -->
-    <div class='message'></div>
   </body>
 </html>

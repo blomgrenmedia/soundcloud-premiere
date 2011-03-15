@@ -14,7 +14,7 @@ var consumer_key = "ePT3qXXTOjw4ZoZcN7ALQ",
 
 // Set a few default options for SoundManager2
 
-soundManager.url = 'http://premiere.heroku.com/swfs/';
+soundManager.url = '/swfs/';
 soundManager.flashVersion = 9;
 soundManager.useFlashBlock = false;
 soundManager.useHighPerformance = true;
@@ -26,6 +26,16 @@ soundManager.useFastPolling = true;
 // Wait for jQuery to load
 
 $(function(){
+	
+	// ## Create Player
+	
+	// Create Player, Header, and Message divs
+	
+	$("<div class='player'><div class='panel right'><div class='avatar'><img /></div><div class='description'></div><ol class='tracks'></ol></div><div class='panel left'><div class='artwork'><img /><div class='button'><div class='play'></div></div></div></div></div>").prependTo('body');
+	
+	$("<div class='header'><div class='time'><div class='track'></div><div class='buffer'></div><div class='played'></div><canvas id='waveform'></canvas><div class='waveform'><img /></div><div class='seekhead'></div></div><div class='comments'></div></div>").prependTo('body');
+	
+	$("<div class='message'></div>").appendTo('body');
 	
 	// Center Player & Share buttons on page
 	
@@ -59,9 +69,17 @@ $(function(){
 			
 			// Once playlist data is loaded, apply the artwork, user avatar, and user username to the player.
 			
-			$('.artwork img').attr('src', playlist.artwork_url.replace('-large', '-crop'));
-			
-			$('.artwork').css('background-image', 'url(' + playlist.artwork_url.replace('-large', '-crop') + ')');
+			if(playlist.artwork_url) {
+				
+				$('.artwork img').attr('src', playlist.artwork_url.replace('-large', '-crop'));
+
+				$('.artwork').css('background-image', 'url(' + playlist.artwork_url.replace('-large', '-crop') + ')');
+				
+			} else {
+				
+				$('.artwork').css('background-color', 'black');
+				
+			}
 			
 			$('.artwork').fadeIn('slow');
 			
