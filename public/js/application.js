@@ -7,8 +7,6 @@
 // Declare some default variables that will be used in the application.
 
 var consumer_key = "ePT3qXXTOjw4ZoZcN7ALQ",
-		url = "http://soundcloud.com/dominorecordco/sets/qotsa/", 
-		//url = "http://soundcloud.com/britneyspears/sets/femmefatale-snippets/",
 		page_title = document.title,
 		messageTimer = 0;
 

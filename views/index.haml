@@ -8,18 +8,54 @@
 		
 		%meta{:name => "viewport", :content => "width=800,user-scalable=no"}
 		
-		%meta{:property => "og:title", :content => "QOTSA"}		
+		/ Adjust the following meta data which will be passed to Facebook when clicking the Like button
+		
+		/ Album title
+		
+		%meta{:property => "og:title", :content => "QOTSA"}
+		
+		/ Album description
+		
 		%meta{:property => "og:description", :content => 'QOTSA remastered with b-sides.'}
+		
+		/ Content type, album should suffice
+				
 		%meta{:property => "og:type", :content => "album"}
+		
+		/ Direct link to album cover image
+		
 		%meta{:property => "og:image", :content => "http://qotsa.heroku.com/images/artwork.jpg"}
+		
+		/ Link to url where premiere resides (this page)
+		
 		%meta{:property => "og:url", :content => "http://qotsa.heroku.com"}
+		
+		/ Name of site or in this case, band
+		
 		%meta{:property => "og:site_name", :content => "Queens of the Stone Age"}				
+		
+		/ Edit the url in this property to include a link to your SoundCloud set
+		
 		%meta{:property => "og:video", :content => "http://player.soundcloud.com/player.swf?url=http://soundcloud.com/dominorecordco/sets/qotsa/&amp;color=000000&amp;auto_play=true&amp;player_type=artwork"}
+		
+		/ Defaults regarding height, width, and video type
+		
 		%meta{:property => "og:video:height", :content => "425"}
 		%meta{:property => "og:video:width", :content => "425"}
 		%meta{:property => "og:video:type", :content => "application/x-shockwave-flash"}
+		
+		/ Adjust to include your personal or page Facebook ID
+		
 		%meta{:property => "fb:admins", :content => "23424322"}
 	
+		/ Include a link to your SoundCloud Set
+	
+		:javascript
+		
+			var url = "http://soundcloud.com/dominorecordco/sets/qotsa/";
+		
+		/ Include all appropriate Javascript
+
 		%script{:type => "text/javascript", :src => "/js/jquery.min.js"}
 		%script{:type => "text/javascript", :src => "/js/soundmanager2.js"}
 		%script{:type => "text/javascript", :src => "/js/jquery.jscrollpane.min.js"}
@@ -27,11 +63,15 @@
 		%script{:type => "text/javascript", :src => "/js/modernizr.js"}
 		%script{:type => "text/javascript", :src => "/js/jquery.color.min.js"}
 		%script{:type => "text/javascript", :src => "/js/application.js"}
+		
+		/ Include both stylesheets
 	
 		%link{:rel => "stylesheet", :href => "/stylesheets/application.css", :type => 'text/css', :media => "screen"}
 		%link{:rel => "stylesheet", :href => "/stylesheets/theme.css", :type => 'text/css', :media => "screen"}
 	
 	%body
+	
+		/ Header includes comments, the timespan, and waveform
 	
 		.header
 	
@@ -52,6 +92,8 @@
 				.seekhead
 				
 			.comments			
+	
+		/ Includes player, both panels (left & right), and tracklist
 	
 		.player
 		
@@ -74,7 +116,10 @@
 					.button
 						
 						.play
-						
+		
+		/ Includes left links, share buttons, and right links
+		/ Be sure to edit the tweet & like buttons within
+				
 		.footer
 						
 			.share
@@ -90,5 +135,7 @@
 			.logo
 				%a{:href => "http://soundcloud.com/qotsa", :target => "_blank"}
 					%img{:src => "/images/soundcloud.png", :border => 0}
-					
+		
+		/ This is used for displaying comments beneath the header 
+			
 		.message
