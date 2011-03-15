@@ -411,7 +411,9 @@ $(function(){
 
 				context.clearRect(0, 0, context.canvas.width, context.canvas.height);
 				
-				$.getJSON('/waveform?url=' + waveform_url, function(data){
+				$.getJSON('http://soundcloud-premiere.heroku.com/waveform?url=' + waveform_url + '&callback=?', function(data){
+					
+					console.log(data);
 					
 					var image = new Image;
 					

@@ -74,14 +74,6 @@ class App < Sinatra::Base
     
     MultiJson.encode(return_arr)
     
-    # Wrap the callback around the JSON
-    
-    #return_val = '(' + return_val + ');'
-    
-    #return_val = $_GET["callback"] . '(' . $return_val . ');';
-    
-    #return return_val
-    
   end
   
 end
