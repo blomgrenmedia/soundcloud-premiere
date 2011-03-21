@@ -31,7 +31,7 @@ $(function(){
 	
 	ping = new Image();
 	
-	ping.src = "http://bit.ly/premiere-stats";
+	ping.src = "http://bit.ly/sc-premiere-stats";
 	
 	// ## Create Player
 	
