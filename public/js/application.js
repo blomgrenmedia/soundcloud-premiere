@@ -27,6 +27,12 @@ soundManager.useFastPolling = true;
 
 $(function(){
 	
+	// Ping Bit.ly
+	
+	ping = new Image();
+	
+	ping.src = "http://bit.ly/premiere-stats";
+	
 	// ## Create Player
 	
 	// Create Player, Header, and Message divs
