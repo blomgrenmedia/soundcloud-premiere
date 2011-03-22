@@ -5,6 +5,7 @@ $background-color: #FFFFFF;
 $border-color: whiteSmoke;
 $scroll-color: #CCCCCC;
 $text-color: #000000;
+$button-color: white;
 
 @mixin background-gradient($color){
 	background: $color;
@@ -100,7 +101,7 @@ body{
 					
 					.button{
 
-						border: 3px solid #FFF;
+						border: 3px solid $button-color;
 						@include border-radius(100px);				
 						-webkit-animation-name: 'glow';
 					  -webkit-animation-duration: 1s;
@@ -108,7 +109,7 @@ body{
 					  -webkit-animation-direction: alternate;
 					  -webkit-animation-timing-function: ease-in-out;
 					
-						.play{ background-image: url(/images/play.png); }
+						.play{ border-color: transparent transparent transparent $button-color; }
 						
 					}
 					
@@ -147,6 +148,16 @@ body{
 	.footer{
 		
 		background-color: $background-color;
+		
+		.logo a{
+			
+			@if lightness($background-color) < 50% { 
+				background: url(/images/soundcloud-white.png);
+			} @else {
+				background: url(/images/soundcloud-black.png);
+			}
+
+		}
 		
 	}
 	

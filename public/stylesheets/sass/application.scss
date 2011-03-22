@@ -1,6 +1,7 @@
 $panel: 300px;
 $padding: 10px;
 $button: 75px;
+$play: 14px;
 $avatar: 47px;
 $scroll: 10px;
 $comments: 18px;
@@ -123,9 +124,21 @@ body{
 						position: absolute;
 						top: ($panel - $padding * 2) / 2 - $button / 2;
 						
-						&, .play{
+						&{
 							height: $button;
 							width: $button;
+						}
+						
+						.play{
+							
+							border-style: solid;
+							border-width: $play;
+							height: 0;
+							left: $button / 2 - ($play / 2 - 3px);
+							position: absolute;							
+							top: $button / 2 - $play;
+							width: 0;
+							
 						}
 						
 					}
@@ -220,7 +233,17 @@ body{
 		
 		// SoundCloud Logo
 		
-		.logo{ right: 20px; }
+		.logo{
+			
+			right: 20px;
+			
+			a{
+				display: block;
+				height: 13px;
+				width: 30px;
+			}
+			
+		}
 		
 	}
 	

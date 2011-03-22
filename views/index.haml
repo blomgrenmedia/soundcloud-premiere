@@ -1,5 +1,5 @@
-- url = "http://premiere.heroku.com"
-- #url = ""
+- #url = "http://premiere.heroku.com"
+- url = ""
 
 !!!
 %html
@@ -11,7 +11,7 @@
 		
 		/ (1) Adjust the following meta data which will be passed to Facebook when clicking the Like button
 		/ Making sure to edit the url in the 'og:video' property
-		/ And adjusting to include your personal or app Facebook ID in the 'fb:admins' property
+		/ And adjusting to include a new Facebook app ID in the 'fb:app_id' property
 		
 		%meta{:property => "og:title", :content => "QOTSA"}
 		%meta{:property => "og:description", :content => 'QOTSA remastered with b-sides.'}
@@ -52,7 +52,7 @@
 		:css			
 			/* body{ background-image: url(image.jpg); } */
 	
-	%body
+	%body			
 	
 		/ (5) Be sure to edit the links and share widgets within
 				
@@ -69,6 +69,5 @@
 				%a{:href => "http://www.rekordsrekords.com/news", :target => "_blank"} Enter Site
 		
 			.logo
-				%a{:href => "http://soundcloud.com/qotsa", :target => "_blank"}
-					%img{:src => "#{url}/images/soundcloud.png", :border => 0}
+				%a{:href => "http://soundcloud.com/qotsa", :target => "_blank"} &nbsp;
 		
