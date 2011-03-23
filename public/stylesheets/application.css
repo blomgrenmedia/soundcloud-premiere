@@ -80,11 +80,11 @@ body {
             width: 75px; }
           body .player .panel.left .artwork .button .play {
             border-style: solid;
-            border-width: 14px;
+            border-width: 15px;
             height: 0;
-            left: 33.5px;
+            left: 33px;
             position: absolute;
-            top: 23.5px;
+            top: 22.5px;
             width: 0; }
       body .player .panel.right .avatar {
         height: 47px;
