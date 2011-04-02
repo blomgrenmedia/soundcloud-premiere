@@ -343,10 +343,23 @@ $(function(){
 		
 		$(this).fadeOut();
 		
+		// Unlock the player
+		
+		unlockPlayer();
+		
+	});
+
+	// ## Functions
+	
+	// ### Unlock Player
+	
+	// This function animates the player open and adds a bind event to the header area
+	
+	var unlockPlayer = function(){
+		
 		// Declare basic animation variables
 		
-		var duration = 4000,
-				easing = 'swing';
+		var duration = 4000, easing = 'swing';
 				
 		// Animate the left & right panels to swing open
 		
@@ -376,43 +389,39 @@ $(function(){
 			easing: easing
 		});
 		
-	});
-	
-	// ### Time Click & Scrub
-	
-	// Bind a *click* event to the time div
-	
-	$('.header').live('click', function(event) {
-		
-		if(event.pageY > 18) {
-			
-			// Call the scrub function, handing over the clicks x position
-			
-			scrub(this, event.pageX);
-			
-		} else {
-			
-			if (event.target.className == 'comments') {
-			
-				track = $('li.active').data('track');
-			
-				relative = Math.round(event.pageX / $(window).width() * track.duration);
-				
-				window.open(track.permalink_url + '#new-timed-comment-at-' + relative, "New Timed Comment");
-				
-			} else {
-				
-				// comment clicked...
-				
-			}
-			
-		}
-	
-	  return false;
-	
-	});
+		// Bind a *click* event to the time div
 
-	// ## Functions
+		$('.header').live('click', function(event) {
+
+			if(event.pageY > 18) {
+
+				// Call the scrub function, handing over the clicks x position
+
+				scrub(this, event.pageX);
+
+			} else {
+
+				if (event.target.className == 'comments') {
+
+					track = $('li.active').data('track');
+
+					relative = Math.round(event.pageX / $(window).width() * track.duration);
+
+					window.open(track.permalink_url + '#new-timed-comment-at-' + relative, "New Timed Comment");
+
+				} else {
+
+					// comment clicked...
+
+				}
+
+			}
+
+		  return false;
+
+		});
+		
+	}
 	
 	// ### Load Waveform
 	
