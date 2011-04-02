@@ -393,7 +393,7 @@ $(function(){
 
 		$('.header').live('click', function(event) {
 
-			if(event.pageY > 18) {
+			if(event.pageY > $('.comments').height()) {
 
 				// Call the scrub function, handing over the clicks x position
 
