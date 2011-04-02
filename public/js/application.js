@@ -95,10 +95,6 @@ $(function(){
 			
 			$('.description').html(playlist.title + '<br>by ' + playlist.user.username);
 			
-			// Load the first track's waveform using the *loadWaveform* function declared later.
-			
-			loadWaveform(playlist.tracks[0].waveform_url);
-			
 			// Loop through each track in the playlist
 				
 			$.each(playlist.tracks, function(index, track) {
@@ -106,10 +102,6 @@ $(function(){
 				// Create a list item for track, associate it's data, and append it to the track list.
 				
 				var $li = $('<li class="track_' + track.id + '">' + (index + 1) + '. ' + track.title + '</li>').data('track', track).appendTo('.tracks');
-				
-				// Make the first track active because it has been loaded automagically
-				
-				if(index == 0){ $li.addClass('active').addClass('preloaded'); }
 				
 				// Find the appropriate stream url depending on whether the track has a secret_token or is public.
 				
@@ -134,7 +126,7 @@ $(function(){
 					id: 'track_' + track.id,
 					multiShot: false,
 					url: url,
-					volume: 100,
+					volume: 0,
 					
 					// ### Sound Functions
 					
@@ -220,59 +212,23 @@ $(function(){
 
 				});
 				
-				// ## Comments
+				// Load first track
 				
-				// Initialize a new array called *comments* in the list item data
+				if(index == 0){
 				
-				$li.data('track').comments = new Array();
-				
-				// Loop until *comment_count* is reached
-				
-				for(offset = 0; offset <= track.comment_count; offset += 50) {
+					// Load the first track's waveform using the *loadWaveform* function declared later.
+
+					loadWaveform(track.waveform_url);
+
+					// Load the first track's comments using the *loadComments* function declared later.
+
+					loadComments(track);
 					
-					// Get track comments from SoundCloud
-
-					$.getJSON("http://api.soundcloud.com/tracks/" + track.id + "/comments.json?offset=" + offset + "&consumer_key=" + consumer_key + '&callback=?', function(comments){
-						
-						// Loop through each comment
-						
-						$.each(comments, function(i, comment) {													
-							
-							// Only do something if the comment is timestamped														
-							
-							if(comment.timestamp){
-								
-								// Push the timestamped comment into the comments array
-								
-								$li.data('track').comments.push(comment);
-								
-								// If this is the first track, load the comment into view
-								
-								if(index == 0) { loadComment(track, comment); }
-								
-								// Create a SoundManager2 **On Position** listener event for the comment
-									
-								s.onposition(comment.timestamp, function(eventPosition) {
-									
-									clearTimeout(messageTimer);
-									
-									messageTimer = setTimeout( function() { $('.message').fadeOut(); }, 3000);
-									
-									position = comment.timestamp / track.duration * 100;
-									
-									//$('.comment_' + comment.id).addClass('active');
-
-									$('.message').text(comment.body).fadeIn().css('left', position + '%');
-
-								});
-
-							}
-						
-						});
-						
-					});
+					// Make the first track active because it has been loaded automagically
 					
-				}				
+					$li.addClass('active').addClass('preloaded');
+					
+				}
 				
 			});
 			
@@ -529,17 +485,84 @@ $(function(){
 	
 	var loadComments = function(track){
 		
-		// Remove all existing comments
+		// Set a data variable for the current track
 		
+		var data = $('.track_' + track.id).data('track'),
+				s = soundManager.getSoundById('track_' + track.id);
+		
+		// Remove all existing comments
+	
 		$('.comments').empty();
 		
-		// Loop through each comment and call the **loadComment** function above
+		// If the track has comments
+		
+		if (track.comment_count != 0) {
 			
-		$.each(track.comments, function(index, comment) {
+			if (data.comments) {
+				
+				// Loop through each comment and call the **loadComment** function above
 
-			loadComment(track, comment);
+				$.each(data.comments, function(index, comment) {
 
-		});
+					loadComment(track, comment);
+
+				});
+				
+			} else {
+				
+				// Initialize a new array called *comments* in the list item data
+
+				data.comments = new Array();
+				
+				// Loop until *comment_count* is reached
+				
+				for(offset = 0; offset <= track.comment_count; offset += 50) {
+					
+					// Get track comments from SoundCloud
+
+					$.getJSON("http://api.soundcloud.com/tracks/" + track.id + "/comments.json?offset=" + offset + "&consumer_key=" + consumer_key + '&callback=?', function(comments){
+						
+						// Loop through each comment
+						
+						$.each(comments, function(i, comment) {													
+							
+							// Only do something if the comment is timestamped														
+							
+							if(comment.timestamp){
+								
+								// Push the timestamped comment into the comments array
+								
+								data.comments.push(comment);
+								
+								// Load the comment into view
+								
+								loadComment(track, comment);
+								
+								// Create a SoundManager2 **On Position** listener event for the comment
+									
+								s.onposition(comment.timestamp, function(eventPosition) {
+									
+									clearTimeout(messageTimer);
+									
+									messageTimer = setTimeout( function() { $('.message').fadeOut(); }, 3000);
+									
+									position = comment.timestamp / track.duration * 100;
+
+									$('.message').text(comment.body).fadeIn().css('left', position + '%');
+
+								});
+
+							}
+						
+						});
+						
+					});
+					
+				}
+				
+			}
+		
+		}
 		
 	}
 	
