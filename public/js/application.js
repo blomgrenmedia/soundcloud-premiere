@@ -497,79 +497,85 @@ $(function(){
 		
 		var data = $('.track_' + track.id).data('track'),
 				s = soundManager.getSoundById('track_' + track.id);
-		
-		// Remove all existing comments
-	
-		$('.comments').empty();
-		
-		// If the track has comments
-		
-		if (track.comment_count != 0) {
-			
-			if (data.comments) {
 				
-				// Loop through each comment and call the **loadComment** function above
-
-				$.each(data.comments, function(index, comment) {
-
-					loadComment(track, comment);
-
-				});
+		// If the track is public...
 				
-			} else {
-				
-				// Initialize a new array called *comments* in the list item data
+		if (track.sharing == "public") {
 
-				data.comments = new Array();
-				
-				// Loop until *comment_count* is reached
-				
-				for(offset = 0; offset <= track.comment_count; offset += 50) {
-					
-					// Get track comments from SoundCloud
+			// Remove all existing comments
 
-					$.getJSON("http://api.soundcloud.com/tracks/" + track.id + "/comments.json?offset=" + offset + "&consumer_key=" + consumer_key + '&callback=?', function(comments){
-						
-						// Loop through each comment
-						
-						$.each(comments, function(i, comment) {													
-							
-							// Only do something if the comment is timestamped														
-							
-							if(comment.timestamp){
-								
-								// Push the timestamped comment into the comments array
-								
-								data.comments.push(comment);
-								
-								// Load the comment into view
-								
-								loadComment(track, comment);
-								
-								// Create a SoundManager2 **On Position** listener event for the comment
-									
-								s.onposition(comment.timestamp, function(eventPosition) {
-									
-									clearTimeout(messageTimer);
-									
-									messageTimer = setTimeout( function() { $('.message').fadeOut(); }, 3000);
-									
-									position = comment.timestamp / track.duration * 100;
+			$('.comments').empty();
 
-									$('.message').text(comment.body).fadeIn().css('left', position + '%');
+			// If the track has comments
 
-								});
+			if (track.comment_count != 0) {
 
-							}
-						
-						});
-						
+				if (data.comments) {
+
+					// Loop through each comment and call the **loadComment** function above
+
+					$.each(data.comments, function(index, comment) {
+
+						loadComment(track, comment);
+
 					});
-					
+
+				} else {
+
+					// Initialize a new array called *comments* in the list item data
+
+					data.comments = new Array();
+
+					// Loop until *comment_count* is reached
+
+					for(offset = 0; offset <= track.comment_count; offset += 50) {
+
+						// Get track comments from SoundCloud
+
+						$.getJSON("http://api.soundcloud.com/tracks/" + track.id + "/comments.json?offset=" + offset + "&consumer_key=" + consumer_key + '&callback=?', function(comments){
+
+							// Loop through each comment
+
+							$.each(comments, function(i, comment) {													
+
+								// Only do something if the comment is timestamped														
+
+								if(comment.timestamp){
+
+									// Push the timestamped comment into the comments array
+
+									data.comments.push(comment);
+
+									// Load the comment into view
+
+									loadComment(track, comment);
+
+									// Create a SoundManager2 **On Position** listener event for the comment
+
+									s.onposition(comment.timestamp, function(eventPosition) {
+
+										clearTimeout(messageTimer);
+
+										messageTimer = setTimeout( function() { $('.message').fadeOut(); }, 3000);
+
+										position = comment.timestamp / track.duration * 100;
+
+										$('.message').text(comment.body).fadeIn().css('left', position + '%');
+
+									});
+
+								}
+
+							});
+
+						});
+
+					}
+
 				}
-				
+
 			}
-		
+			
 		}
 		
 	}
