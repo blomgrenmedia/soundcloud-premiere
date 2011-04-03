@@ -45,13 +45,38 @@ $(function(){
 	
 	// Lock ideas
 	
-	var instructions = "To unlock the full stream please login below first.";
+	var login_info = "To unlock the full stream please login below first.",
+			share_info = "Click below to share a message<br>and unlock Wasting Light.";
 	
 	$(".button").hide();
 	
-	// <h1>TWEET TO UNLOCK</h1>
+	//$('<div class="lock"><div class="instructions">' + login_info + '</div><a class="login" href="#">Twitter</a></div>').appendTo('.artwork');
 	
-	$('<div class="lock"><div class="instructions">' + instructions + '</div><a class="unlock" href="#">Twitter</a></div>').appendTo('.artwork');
+	twttr.anywhere(function (T) {
+		
+		$('<div class="lock"><div class="instructions"></div><a href="#"></a></div>').appendTo('.artwork');
+		
+		if (T.isConnected()) {
+			
+			$('.instructions').html(share_info);
+			$('.lock a').addClass('unlock').text('Share & Unlock');
+			
+		} else {
+		
+			$('.instructions').text(login_info);			
+			$('.lock a').addClass('login').bind('click', function(){ T.signIn(); });
+			
+		}
+		
+		T.bind("authComplete", function (e, user) {
+			
+			$('.instructions').text(share_info);
+			
+      $('.login').unbind('click').removeClass('login').addClass('unlock').text('Share & Unlock');
+
+    });
+
+  });
 	
 	// Center Player & Share buttons on page
 	

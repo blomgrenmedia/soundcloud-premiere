@@ -40,7 +40,7 @@ body {
       background-color: white;
       background: -webkit-gradient(linear, 0% 0%, 100% 0%, from(white), to(white), color-stop(0.5, rgba(255, 255, 255, 0.8)));
       background: -moz-linear-gradient(left, white, rgba(255, 255, 255, 0.8) 50%, white); }
-      body .player .panel.left .artwork .lock .unlock {
+      body .player .panel.left .artwork .lock a {
         background-color: black;
         border-radius: 5px;
         -moz-border-radius: 5px;

@@ -107,7 +107,7 @@ body{
 						background: -webkit-gradient(linear, 0% 0%, 100% 0%, from($background-color), to($background-color), color-stop(0.5, rgba($background-color, 0.8)));
 						background: -moz-linear-gradient(left, $background-color, rgba($background-color, 0.8) 50%, $background-color);
 						
-						.unlock{							
+						a{							
 							background-color: black;
 							@include border-radius(5px);
 							color: white;
