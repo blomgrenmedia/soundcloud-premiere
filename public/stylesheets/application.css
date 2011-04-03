@@ -27,7 +27,7 @@ body {
       height: 50px;
       overflow: hidden;
       top: 18px; }
-      body .header .time div {
+      body .header .time .waveform {
         display: none; }
       body .header .time div, body .header .time canvas, body .header .time img {
         height: 40px;

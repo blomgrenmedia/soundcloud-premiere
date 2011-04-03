@@ -160,7 +160,7 @@ $(function(){
 							
 						} else {
 							
-							loadWaveform(track.waveform_url);
+							loadWaveform(track);
 
 							loadComments(track);
 							
@@ -218,7 +218,7 @@ $(function(){
 				
 					// Load the first track's waveform using the *loadWaveform* function declared later.
 
-					loadWaveform(track.waveform_url);
+					loadWaveform(track);
 
 					// Load the first track's comments using the *loadComments* function declared later.
 
@@ -386,31 +386,43 @@ $(function(){
 	// If canvas is not available, the waveform will be added as an image instead.
 	// I use the following libraries to pull this off: modernizr, jquery.color, and jquery.getimagedata.
 	
-	var loadWaveform = function(waveform_url){
+	var loadWaveform = function(track){
 		
 		// #### Canvas Available
 		
 		if( $('html').hasClass('canvas') ) {
 			
-			var waveform_color = $.Color($('.time').css('background-color')),
+			// Declare a few variables
+			
+			var waveform_color = $.Color( $('.time').css('background-color') ),
 					canvas = document.getElementById("waveform"),
 					context = canvas.getContext("2d");
-
-			$('.track, .buffer, .played').fadeOut('fast', function(){
-
-				context.clearRect(0, 0, context.canvas.width, context.canvas.height);
 					
-				$.getJSON('http://premiere.heroku.com/waveform?callback=?', { url: waveform_url }, function(data){
+			// Clear the Canvas
+
+			context.clearRect(0, 0, context.canvas.width, context.canvas.height);
 					
+			if (track.waveform_data) {
+				
+				// If waveform data already exists, put it on Canvas
+
+				context.putImageData(track.waveform_data, 0, 0);
+				
+			} else {
+				
+				// If not, get the data and change each pixel color to match background
+				
+				$.getJSON('http://premiere.heroku.com/waveform?callback=?', { url: track.waveform_url }, function(data){
+
 					var image = new Image;
-					
+
 					image.src = data.data;
-					
+
 					image.onload = function(){
-					
+
 						image.width = data.width;
 						image.height = data.height;
-						
+
 						context.drawImage(image, 0, 0, context.canvas.width, context.canvas.height);
 
 						var imgd = context.getImageData(0, 0, context.canvas.width, context.canvas.height);
@@ -425,27 +437,23 @@ $(function(){
 
 						}
 
-						context.putImageData(imgd, 0, 0);
+						track.waveform_data = imgd;
 
-						$('.track, .buffer, .played').fadeIn('fast');
-						
+						context.putImageData(track.waveform_data, 0, 0);
+
 					}
-					
-				});
 
-			});
+				});
+				
+			}
 			
 		// #### Canvas Not Available
 			
 		} else {
 			
-			$('.time div').fadeOut('fast', function(){
+			$('.waveform').show();
 			
-				$('.waveform img').attr('src', waveform_url);
-				
-				$('.time div').fadeIn();
-				
-			});
+			$('.waveform img').attr('src', track.waveform_url);
 			
 		}	
 		

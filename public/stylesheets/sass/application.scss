@@ -43,8 +43,8 @@ body{
 			height: $time;
 			overflow: hidden;
 			top: $comments;
-
-			div{ display: none; }
+			
+			.waveform{ display: none; }
 
 			div, canvas, img{
 
