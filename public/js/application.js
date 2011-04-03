@@ -558,9 +558,25 @@ $(function(){
 
 										messageTimer = setTimeout( function() { $('.message').fadeOut(); }, 3000);
 
-										position = comment.timestamp / track.duration * 100;
+										position = comment.timestamp / track.duration * $('.time').width();
 
-										$('.message').text(comment.body).fadeIn().css('left', position + '%');
+										$('.message').text(comment.body).fadeIn();
+										
+										if ( position < ( $('.time').width() / 2 ) ) {
+											
+											$('.message').css({
+												left: position,
+												right: 'auto'
+											});
+											
+										} else {
+											
+											$('.message').css({
+												left: 'auto',
+												right: $('.time').width() - position
+											});
+											
+										}
 
 									});
 
