@@ -562,7 +562,7 @@ $(function(){
 
 										$('.message').text(comment.body).fadeIn();
 										
-										if ( position < ( $('.time').width() / 2 ) ) {
+										if ( position < ( $('.time').width() - $('.message').width() ) ) {
 											
 											$('.message').css({
 												left: position,
