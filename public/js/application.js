@@ -126,7 +126,7 @@ $(function(){
 					id: 'track_' + track.id,
 					multiShot: false,
 					url: url,
-					volume: 0,
+					volume: 100,
 					
 					// ### Sound Functions
 					
