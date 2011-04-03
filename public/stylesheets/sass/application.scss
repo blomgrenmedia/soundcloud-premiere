@@ -1,4 +1,4 @@
-$panel: 300px;
+$panel: 325px;
 $padding: 10px;
 $button: 75px;
 $play: $button / 2.5 / 2;
@@ -116,12 +116,31 @@ body{
 
 					@include background-size;
 					display: none;
+					
+					& > div{ position: absolute; }
+					
+					.lock{
+						
+						padding: 20px 0;
+						text-align: center;
+						top: ($panel - $padding * 2) / 2;
+						width: 100%;
+						
+						.instructions{
+							margin-bottom: 10px;
+						}
+						
+						.unlock{
+							display: inline-block;
+							padding: 5px 10px;
+						}
+						
+					}
 				
 					.button{
 						
 						cursor: pointer;
 						left: ($panel - $padding * 2) / 2 - $button / 2;
-						position: absolute;
 						top: ($panel - $padding * 2) / 2 - $button / 2;
 						
 						&{
@@ -135,7 +154,7 @@ body{
 							border-width: $play;
 							height: 0;
 							left: $button / 2 - ($play / 2 - 3px);
-							position: absolute;							
+							position: absolute;
 							top: $button / 2 - $play;
 							width: 0;
 							

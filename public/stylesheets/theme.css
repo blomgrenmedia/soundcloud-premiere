@@ -8,8 +8,7 @@
 body {
   background: white url(http://premiere.heroku.com/images/bg.jpg) center center no-repeat;
   color: black;
-  font: 12px Futura, Helvetica, sans-serif;
-  text-transform: uppercase; }
+  font: 12px Futura, 'Lucida Grande', Helvetica, sans-serif; }
   body a {
     color: black;
     text-decoration: none;
@@ -37,6 +36,16 @@ body {
       border-radius: 10px;
       -moz-border-radius: 10px;
       -webkit-border-radius: 10px; }
+    body .player .panel.left .artwork .lock {
+      background-color: white;
+      background: -webkit-gradient(linear, 0% 0%, 100% 0%, from(white), to(white), color-stop(0.5, rgba(255, 255, 255, 0.8)));
+      background: -moz-linear-gradient(left, white, rgba(255, 255, 255, 0.8) 50%, white); }
+      body .player .panel.left .artwork .lock .unlock {
+        background-color: black;
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        color: white; }
     body .player .panel.left .artwork .button {
       border: 3px solid white;
       border-radius: 100px;

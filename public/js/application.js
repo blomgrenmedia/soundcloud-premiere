@@ -43,6 +43,16 @@ $(function(){
 	
 	$("<div class='message'></div>").appendTo('body');
 	
+	// Lock ideas
+	
+	var instructions = "To unlock the full stream please login below first.";
+	
+	$(".button").hide();
+	
+	// <h1>TWEET TO UNLOCK</h1>
+	
+	$('<div class="lock"><div class="instructions">' + instructions + '</div><a class="unlock" href="#">Twitter</a></div>').appendTo('.artwork');
+	
 	// Center Player & Share buttons on page
 	
 	$(window).resize(function(){
@@ -291,13 +301,25 @@ $(function(){
 	
 	$('.button').live('click', function() {
 		
-		// Click/Play the first track
-		
-		$('li.active').click();
-		
 		// Fade out the play button
 		
 		$(this).fadeOut();
+		
+		// Unlock the player
+		
+		unlockPlayer();
+		
+	});
+	
+	// ### Lock
+	
+	// Bind a *click* event to the lock
+	
+	$('.unlock').live('click', function() {
+		
+		// Fade out the lock
+		
+		$('.lock').fadeOut('slow');
 		
 		// Unlock the player
 		
@@ -312,6 +334,10 @@ $(function(){
 	// This function animates the player open and adds a bind event to the header area
 	
 	var unlockPlayer = function(){
+		
+		// Click/Play the first track
+		
+		$('li.active').click();
 		
 		// Declare basic animation variables
 		

@@ -51,30 +51,41 @@ body {
           -o-background-size: cover;
           background-size: cover; }
   body .player {
-    width: 600px; }
+    width: 650px; }
     body .player, body .player .panel {
-      height: 300px; }
+      height: 325px; }
     body .player .panel {
-      left: 150px;
-      width: 300px; }
+      left: 162.5px;
+      width: 325px; }
       body .player .panel, body .player .panel > div {
         position: absolute; }
       body .player .panel > div, body .player .panel .artwork img {
-        height: 280px;
+        height: 305px;
         left: 10px;
         top: 10px;
-        width: 280px; }
+        width: 305px; }
       body .player .panel.left .artwork {
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
         background-size: cover;
         display: none; }
+        body .player .panel.left .artwork > div {
+          position: absolute; }
+        body .player .panel.left .artwork .lock {
+          padding: 20px 0;
+          text-align: center;
+          top: 152.5px;
+          width: 100%; }
+          body .player .panel.left .artwork .lock .instructions {
+            margin-bottom: 10px; }
+          body .player .panel.left .artwork .lock .unlock {
+            display: inline-block;
+            padding: 5px 10px; }
         body .player .panel.left .artwork .button {
           cursor: pointer;
-          left: 102.5px;
-          position: absolute;
-          top: 102.5px; }
+          left: 115px;
+          top: 115px; }
           body .player .panel.left .artwork .button {
             height: 75px;
             width: 75px; }
@@ -93,15 +104,15 @@ body {
         height: 37px;
         left: 67px;
         top: 15px;
-        width: 223px; }
+        width: 248px; }
       body .player .panel.right ol.tracks {
-        height: 223px;
+        height: 248px;
         left: 10px;
         list-style: none;
         overflow: auto;
         position: absolute;
         top: 67px;
-        width: 280px; }
+        width: 305px; }
         body .player .panel.right ol.tracks li {
           cursor: pointer;
           height: 25px;
