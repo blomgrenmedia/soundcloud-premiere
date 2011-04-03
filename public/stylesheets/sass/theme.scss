@@ -6,6 +6,7 @@ $border-color: whiteSmoke;
 $scroll-color: #CCCCCC;
 $text-color: #000000;
 $button-color: white;
+$shadow-color: rgba(0,0,0,0.25);
 
 @mixin background-gradient($color){
 	background: $color;
@@ -18,9 +19,9 @@ $button-color: white;
 	-webkit-border-radius: $size;
 }
 @mixin box-shadow{
-	box-shadow: 0 0 50px rgba(0,0,0,0.25);
-	-moz-box-shadow: 0 0 50px rgba(0,0,0,0.25);
-	-webkit-box-shadow: 0 0 50px rgba(0,0,0,0.25);
+	box-shadow: 0 0 50px $shadow-color;
+	-moz-box-shadow: 0 0 50px $shadow-color;
+	-webkit-box-shadow: 0 0 50px $shadow-color;
 }
 @mixin background-lighten($color, $amount){
 	
