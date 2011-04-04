@@ -130,7 +130,12 @@ body{
 							margin-bottom: 10px;
 						}
 						
-						a{
+						.shared_message{
+							cursor: pointer;
+							text-decoration: underline;
+						}
+						
+						.submit{
 							display: inline-block;
 							padding: 5px 10px;
 						}

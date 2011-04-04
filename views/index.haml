@@ -1,11 +1,14 @@
-- #url = "http://premiere.heroku.com"
+- # (0) I use this to swap out the asset urls depending on expert vs. basic deployments.
+- # Do not touch!
+
+- # url = "http://premiere.heroku.com"
 - url = ""
 
 !!!
 %html
 	%head
 	
-		%title Queens of the Stone Age
+		%title SoundCloud Premiere
 		
 		%meta{:name => "viewport", :content => "width=800,user-scalable=no"}
 		
@@ -13,13 +16,13 @@
 		/ Making sure to edit the url in the 'og:video' property
 		/ And adjusting to include a new Facebook app ID in the 'fb:app_id' property
 		
-		%meta{:property => "og:title", :content => "QOTSA"}
-		%meta{:property => "og:description", :content => 'QOTSA remastered with b-sides.'}
+		%meta{:property => "og:title", :content => "Premiere"}
+		%meta{:property => "og:description", :content => 'The first listen, powered by SoundCloud.'}
 		%meta{:property => "og:type", :content => "album"}
-		%meta{:property => "og:image", :content => "http://qotsa.heroku.com/images/artwork.jpg"}
-		%meta{:property => "og:url", :content => "http://qotsa.heroku.com"}
-		%meta{:property => "og:site_name", :content => "Queens of the Stone Age"}
-		%meta{:property => "og:video", :content => "http://player.soundcloud.com/player.swf?url=http://soundcloud.com/dominorecordco/sets/qotsa/&amp;color=000000&amp;auto_play=true&amp;player_type=artwork"}
+		%meta{:property => "og:image", :content => "http://premiere.heroku.com/images/artwork.jpg"}
+		%meta{:property => "og:url", :content => "http://premiere.heroku.com"}
+		%meta{:property => "og:site_name", :content => "SoundCloud"}
+		%meta{:property => "og:video", :content => "http://player.soundcloud.com/player.swf?url=http://soundcloud.com/foofighters/sets/wasting-light&color=000000&auto_play=true&player_type=artwork"}
 		%meta{:property => "og:video:height", :content => "425"}
 		%meta{:property => "og:video:width", :content => "425"}
 		%meta{:property => "og:video:type", :content => "application/x-shockwave-flash"}		
@@ -31,10 +34,20 @@
 		:javascript		
 			var url = "http://soundcloud.com/foofighters/sets/wasting-light",
 					soundmanager_url = "/swfs/";
+					
+		- # (2.5) Expert: This adds the javascript variables needed to perform a Tweet to Unlock.
+		- # You should shared message only.
+					
+		- if lock
+		
+			/ (2.5) Variables needed to perform Tweet to Unlock
+		
+			:javascript
+				var message = "Visit http://bit.ly/dYz3zu to unlock the full stream of @FooFighters's new record #WastingLight.",
+						logged_in = #{!session[:user].nil?},
+						unlocked = #{!session[:unlocked].nil?};						
 		
 		/ (3) Include all appropriate Javascript
-		
-		%script{:type => "text/javascript", :src => "http://platform.twitter.com/anywhere.js?id=Ztassm1yaTm946DSdffxBw&amp;v=1"}
 
 		%script{:type => "text/javascript", :src => "#{url}/js/jquery.min.js"}
 		%script{:type => "text/javascript", :src => "#{url}/js/soundmanager2.js"}
@@ -46,7 +59,7 @@
 		
 		/ (4) Include both stylesheets
 		/ Add your custom css in the provided area below or simply locally adjust theme.css accordingly
-		/ For rapid theme development, check the theme.scss file provided here: 
+		/ For rapid theme development, check the theme.scss file provided [here](https://github.com/soundcloud/soundcloud-premiere/blob/master/public/stylesheets/sass/theme.scss): 
 	
 		%link{:rel => "stylesheet", :href => "#{url}/stylesheets/application.css", :type => 'text/css', :media => "screen"}
 		%link{:rel => "stylesheet", :href => "#{url}/stylesheets/theme.css", :type => 'text/css', :media => "screen"}
@@ -63,13 +76,13 @@
 			.share
 	
 				<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>	
-				<iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fqotsa.heroku.com&amp;layout=button_count&amp;show_faces=false&amp;width=90&amp;action=like&amp;colorscheme=light&amp;height=20" scrolling="no" frameborder="0" class="facebook-like-button" style="border:none; overflow:hidden; width:90px; height:20px;" allowTransparency="true"></iframe>
+				<iframe src="http://www.facebook.com/plugins/like.php?href=premiere.heroku.com&layout=button_count&show_faces=false&width=90&action=like&colorscheme=light&height=20" scrolling="no" frameborder="0" class="facebook-like-button" style="border:none; overflow:hidden; width:90px; height:20px;" allowTransparency="true"></iframe>
 				
 			.links
 		
-				%a{:href => "http://www.dominorecordco.com/uk/albums/11-01-11/queens-of-the-stone-age/", :target => "_blank"} Buy it Now
-				%a{:href => "http://www.rekordsrekords.com/news", :target => "_blank"} Enter Site
+				%a{:href => "http://www.smarturl.it/fooswlpreorder", :target => "_blank"} Buy it Now
+				%a{:href => "#", :target => "_blank"} Enter Site
 		
 			.logo
-				%a{:href => "http://soundcloud.com/qotsa", :target => "_blank"} &nbsp;
+				%a{:href => "http://soundcloud.com", :target => "_blank"} &nbsp;
 		

@@ -1,6 +1,6 @@
 $radius: 10px;
 
-$accent-color: #ad2790;
+$accent-color: #ec1d25;
 $background-color: #FFFFFF;
 $border-color: whiteSmoke;
 $scroll-color: #CCCCCC;
@@ -40,7 +40,7 @@ $shadow-color: rgba(0,0,0,0.25);
 
 body{
 	
-	background: $background-color url(http://premiere.heroku.com/images/bg.jpg) center center no-repeat;
+	background: $background-color url(/images/bg.jpg) center center no-repeat;
 	color: $text-color;
 	font: 12px Futura, 'Lucida Grande', Helvetica, sans-serif;
 	
@@ -107,7 +107,7 @@ body{
 						background: -webkit-gradient(linear, 0% 0%, 100% 0%, from($background-color), to($background-color), color-stop(0.5, rgba($background-color, 0.8)));
 						background: -moz-linear-gradient(left, $background-color, rgba($background-color, 0.8) 50%, $background-color);
 						
-						a{							
+						.submit{							
 							background-color: black;
 							@include border-radius(5px);
 							color: white;

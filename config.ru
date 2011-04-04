@@ -6,24 +6,31 @@ rescue LoadError
   Bundler.setup
 end
 
-require 'sinatra/base'
+require 'sinatra'
 require 'haml'
 require 'sass/plugin/rack'
-
 require 'cgi'
 require 'net/http'
 require 'image_size'
 require 'base64'
 require 'json'
-require 'multi_json'
+require 'omniauth'
 
 use Sass::Plugin::Rack
 
 class App < Sinatra::Base
 
+  # The index page
+
   get '/' do
-    haml :index
+    
+    haml :index, :locals => {
+      :lock => true
+    }
+    
   end
+  
+  # Waveform Data
   
   get '/waveform' do
     
@@ -78,8 +85,57 @@ class App < Sinatra::Base
     
     # Wrap the callback around the JSON
     
-    return_val = params[:callback] + '(' + return_val + ');'
+    return_val = params[:callback] + '(' + return_val + ');'    
     
+  end
+  
+  # Tweet to Unlock
+
+  enable :sessions #enable :run
+  
+  configure do
+    set :key => 'D9tonxAqgH73v3h3bIPNTA', :secret => 'hfcEuzoHRSKDVzaPkxQZHrX3bDjOHnNtaGIEnMw'    
+    use OmniAuth::Strategies::Twitter, key, secret
+  end  
+  
+  # Post & Unlock
+  
+  post '/unlock' do
+    
+    if session[:unlocked] == nil
+      
+      consumer = OAuth::Consumer.new(options.key, options.secret, :site => "https://twitter.com")
+      
+      token = OAuth::AccessToken.new(consumer, session[:user][:token], session[:user][:secret])
+    
+      token.post('/statuses/update.json', {:status => params[:message]})
+      
+      session[:unlocked] = true
+      
+    end
+    
+    "unlocked"
+    
+  end
+  
+  # Login
+  
+  get '/auth/:strategy/callback' do
+    
+    auth = request.env['omniauth.auth']
+    
+    session[:user] = {:token => auth['credentials']['token'], :secret => auth['credentials']['secret']}
+    
+    redirect "/"
+    
+  end
+  
+  # Logout
+  
+  get '/logout' do
+    
+    session[:user], session[:unlocked] = nil, nil
+    redirect '/'
     
   end
   

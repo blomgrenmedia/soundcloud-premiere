@@ -43,41 +43,6 @@ $(function(){
 	
 	$("<div class='message'></div>").appendTo('body');
 	
-	// Lock ideas
-	
-	var login_info = "To unlock the full stream please login below first.",
-			share_info = "Click below to share a message<br>and unlock Wasting Light.";
-	
-	$(".button").hide();
-	
-	//$('<div class="lock"><div class="instructions">' + login_info + '</div><a class="login" href="#">Twitter</a></div>').appendTo('.artwork');
-	
-	twttr.anywhere(function (T) {
-		
-		$('<div class="lock"><div class="instructions"></div><a href="#"></a></div>').appendTo('.artwork');
-		
-		if (T.isConnected()) {
-			
-			$('.instructions').html(share_info);
-			$('.lock a').addClass('unlock').text('Share & Unlock');
-			
-		} else {
-		
-			$('.instructions').text(login_info);			
-			$('.lock a').addClass('login').bind('click', function(){ T.signIn(); });
-			
-		}
-		
-		T.bind("authComplete", function (e, user) {
-			
-			$('.instructions').text(share_info);
-			
-      $('.login').unbind('click').removeClass('login').addClass('unlock').text('Share & Unlock');
-
-    });
-
-  });
-	
 	// Center Player & Share buttons on page
 	
 	$(window).resize(function(){
@@ -107,6 +72,69 @@ $(function(){
 		// Resolve the playlist and get its data from SoundCloud
 		
 		$.getJSON('http://api.soundcloud.com/resolve?url=' + url + '&format=json&consumer_key=' + consumer_key + '&callback=?', function(playlist){
+			
+			// Create Lock, if needed.
+
+			if (typeof message != "undefined") {
+				
+				if (unlocked != true) {
+
+					var login_info = "To unlock the full stream please login below first.",
+							share_info = "Click below to share a <a class='shared_message' title='" + message + "'>message</a><br>and unlock " + playlist.title + ".";
+
+					$(".button").hide();
+
+					$('<div class="lock"><div class="instructions"></div><a class="submit" href="#"></a></div>').appendTo('.artwork');
+
+					if (logged_in) {
+
+						$('.instructions').html(share_info);
+
+						$('.submit').addClass('unlock').text('Share & Unlock');
+					
+						$('.submit').bind('click', function(){
+
+							$(this).html("Unlocking");
+
+							$.post('/unlock', { message: message }, function(data) {
+
+								if (data) {
+								
+									// Fade out the lock
+
+									$('.lock').fadeOut('slow');
+
+									// Unlock the player
+
+									unlockPlayer();		
+
+								} else {
+
+									// ERROR
+
+								}
+
+							});
+						
+						});
+
+					} else {
+
+						$('.instructions').text(login_info);
+
+						$('.submit').addClass('login').text('Twitter').attr('href', '/auth/twitter');
+
+					}
+				
+					$('.shared_message').bind('click', function(){
+
+						alert( $(this).attr('title') );
+
+					});
+				
+				}
+
+			}
 			
 			// Once playlist data is loaded, apply the artwork, user avatar, and user username to the player.
 			
@@ -336,22 +364,6 @@ $(function(){
 		
 	});
 	
-	// ### Lock
-	
-	// Bind a *click* event to the lock
-	
-	$('.unlock').live('click', function() {
-		
-		// Fade out the lock
-		
-		$('.lock').fadeOut('slow');
-		
-		// Unlock the player
-		
-		unlockPlayer();
-		
-	});
-
 	// ## Functions
 	
 	// ### Unlock Player

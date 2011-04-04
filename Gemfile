@@ -4,7 +4,7 @@ gem 'sinatra', '1.0'
 gem 'haml'
 gem 'imagesize'
 gem 'json'
-gem 'multi_json'
+gem 'omniauth'
 
 group :development do
   gem 'shotgun'

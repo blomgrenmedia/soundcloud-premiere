@@ -79,7 +79,10 @@ body {
           width: 100%; }
           body .player .panel.left .artwork .lock .instructions {
             margin-bottom: 10px; }
-          body .player .panel.left .artwork .lock a {
+          body .player .panel.left .artwork .lock .shared_message {
+            cursor: pointer;
+            text-decoration: underline; }
+          body .player .panel.left .artwork .lock .submit {
             display: inline-block;
             padding: 5px 10px; }
         body .player .panel.left .artwork .button {

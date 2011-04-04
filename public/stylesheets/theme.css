@@ -6,7 +6,7 @@
     -webkit-box-shadow: 0 0 20px #ffe1e1; } }
 
 body {
-  background: white url(http://premiere.heroku.com/images/bg.jpg) center center no-repeat;
+  background: white url(/images/bg.jpg) center center no-repeat;
   color: black;
   font: 12px Futura, 'Lucida Grande', Helvetica, sans-serif; }
   body a {
@@ -14,15 +14,15 @@ body {
     text-decoration: none;
     -webkit-transition: color 1s; }
     body a:hover {
-      color: #ad2790; }
+      color: #ec1d25; }
   body .header .time .buffer {
     background: #cccccc;
     background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#cccccc), to(#cccccc), color-stop(0.4, #e6e6e6), color-stop(0.6, #e6e6e6));
     background: -moz-linear-gradient(top, #cccccc, #e6e6e6 40%, #e6e6e6 60%, #cccccc); }
   body .header .time .played {
-    background: #ad2790;
-    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ad2790), to(#ad2790), color-stop(0.4, #d235b0), color-stop(0.6, #d235b0));
-    background: -moz-linear-gradient(top, #ad2790, #d235b0 40%, #d235b0 60%, #ad2790); }
+    background: #ec1d25;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ec1d25), to(#ec1d25), color-stop(0.4, #f04c52), color-stop(0.6, #f04c52));
+    background: -moz-linear-gradient(top, #ec1d25, #f04c52 40%, #f04c52 60%, #ec1d25); }
   body .header .comments {
     background-color: rgba(255, 255, 255, 0.8); }
     body .header .comments .comment {
@@ -40,7 +40,7 @@ body {
       background-color: white;
       background: -webkit-gradient(linear, 0% 0%, 100% 0%, from(white), to(white), color-stop(0.5, rgba(255, 255, 255, 0.8)));
       background: -moz-linear-gradient(left, white, rgba(255, 255, 255, 0.8) 50%, white); }
-      body .player .panel.left .artwork .lock a {
+      body .player .panel.left .artwork .lock .submit {
         background-color: black;
         border-radius: 5px;
         -moz-border-radius: 5px;
@@ -64,7 +64,7 @@ body {
       body .player .panel.right ol.tracks li:nth-child(odd) {
         background-color: #f2f2f2; }
       body .player .panel.right ol.tracks li.playing {
-        background-color: #ad2790;
+        background-color: #ec1d25;
         color: white; }
   body .footer {
     background-color: white; }
