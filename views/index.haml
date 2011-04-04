@@ -36,7 +36,7 @@
 					soundmanager_url = "/swfs/";
 					
 		- # (2.5) Expert: This adds the javascript variables needed to perform a Tweet to Unlock.
-		- # You should shared message only.
+		- # You should edit the shared message only.
 					
 		- if lock
 		
@@ -45,7 +45,7 @@
 			:javascript
 				var message = "Visit http://bit.ly/dYz3zu to unlock the full stream of @FooFighters's new record #WastingLight.",
 						logged_in = #{!session[:user].nil?},
-						unlocked = #{!session[:unlocked].nil?};						
+						unlocked = #{!session[:unlocked].nil?};
 		
 		/ (3) Include all appropriate Javascript
 

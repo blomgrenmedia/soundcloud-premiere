@@ -73,24 +73,43 @@ $(function(){
 		
 		$.getJSON('http://api.soundcloud.com/resolve?url=' + url + '&format=json&consumer_key=' + consumer_key + '&callback=?', function(playlist){
 			
-			// Create Lock, if needed.
+			// ## Create Lock
+			
+			// If a share message exists, start creating the lock.
+			// Note: Expert deployment only. This will not work using the basic index.html deployment.
 
 			if (typeof message != "undefined") {
 				
+				// If the lock hasn't been unlocked yet
+				
 				if (unlocked != true) {
+					
+					// Declare some default share messages, this can be edited as needed.
 
 					var login_info = "To unlock the full stream please login below first.",
 							share_info = "Click below to share a <a class='shared_message' title='" + message + "'>message</a><br>and unlock " + playlist.title + ".";
+							
+					// Hide the play button
 
 					$(".button").hide();
+					
+					// Create the lock and append it to the artwork div
 
 					$('<div class="lock"><div class="instructions"></div><a class="submit" href="#"></a></div>').appendTo('.artwork');
 
 					if (logged_in) {
+						
+						// If the user is logged in
+						
+						// * Add the appropriate instructions
 
 						$('.instructions').html(share_info);
+						
+						// * Adjust the submit button accordingly
 
 						$('.submit').addClass('unlock').text('Share & Unlock');
+						
+						// * Bind a click function to the submit button that posts to the unlock method
 					
 						$('.submit').bind('click', function(){
 
@@ -117,20 +136,26 @@ $(function(){
 							});
 						
 						});
+						
+						// * Bind a click function to the *shared_message* div that pops up the message the user will share
+						
+						$('.shared_message').bind('click', function(){
+
+							alert( $(this).attr('title') );
+
+						});
 
 					} else {
+						
+						// If the user is not logged in add the appropriate instructions
 
 						$('.instructions').text(login_info);
+						
+						// and make the submit button a login button
 
 						$('.submit').addClass('login').text('Twitter').attr('href', '/auth/twitter');
 
 					}
-				
-					$('.shared_message').bind('click', function(){
-
-						alert( $(this).attr('title') );
-
-					});
 				
 				}
 

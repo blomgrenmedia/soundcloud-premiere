@@ -25,7 +25,7 @@ class App < Sinatra::Base
   get '/' do
     
     haml :index, :locals => {
-      :lock => true
+      :lock => false
     }
     
   end
@@ -91,10 +91,10 @@ class App < Sinatra::Base
   
   # Tweet to Unlock
 
-  enable :sessions #enable :run
+  enable :sessions
   
   configure do
-    set :key => 'D9tonxAqgH73v3h3bIPNTA', :secret => 'hfcEuzoHRSKDVzaPkxQZHrX3bDjOHnNtaGIEnMw'    
+    set :key => '123', :secret => '456'    
     use OmniAuth::Strategies::Twitter, key, secret
   end  
   
