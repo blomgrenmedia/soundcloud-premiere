@@ -20,9 +20,11 @@ use Sass::Plugin::Rack
 
 class App < Sinatra::Base
 
-  # The index page
+  # Main Index
 
   get '/' do
+    
+    # Set lock to true if you wish to lock the stream behind a *tweet to listen*
     
     haml :index, :locals => {
       :lock => false
@@ -90,13 +92,19 @@ class App < Sinatra::Base
   end
   
   # Tweet to Unlock
+  
+  # If you wish to have users tweet in order to listen to the stream
+  # you must first register a new Twitter app [here](http://twitter.com/apps/new).
+  
+  # Once registered, simply supply the app consumer key and secret 5 lines below in the configure block.
+  # Then, edit the *message* javascript variable in index.haml
 
   enable :sessions
   
   configure do
     set :key => '123', :secret => '456'    
     use OmniAuth::Strategies::Twitter, key, secret
-  end  
+  end
   
   # Post & Unlock
   
