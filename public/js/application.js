@@ -619,8 +619,8 @@ $(function(){
 					for(offset = 0; offset <= track.comment_count; offset += 50) {
 
 						// Get track comments from SoundCloud
-
-						$.getJSON("http://api.soundcloud.com/tracks/" + track.id + "/comments.json?offset=" + offset + "&consumer_key=" + consumer_key + '&callback=?', function(comments){
+													
+						getCORS("http://api.soundcloud.com/tracks/" + track.id + "/comments.json?offset=" + offset + "&consumer_key=" + consumer_key, function(comments){
 
 							// Loop through each comment
 
