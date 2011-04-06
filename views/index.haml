@@ -1,8 +1,8 @@
 - # (0) I use this to swap out the asset urls depending on expert vs. basic deployments.
 - # Do not touch!
 
-- # url = "http://premiere.heroku.com"
-- url = ""
+- url = "http://premiere.heroku.com"
+- #url = ""
 
 !!!
 %html
@@ -38,7 +38,7 @@
 		- # (2.5) Expert: This adds the javascript variables needed to perform a Tweet to Unlock.
 		- # You should edit the shared message only.
 					
-		- if lock
+		- if defined?(lock) && lock
 		
 			/ (2.5) Variables needed to perform Tweet to Unlock
 		

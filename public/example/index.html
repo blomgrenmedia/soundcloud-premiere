@@ -1,28 +1,28 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
-    <title>Queens of the Stone Age</title>
+    <title>SoundCloud Premiere</title>
     <meta content='width=800,user-scalable=no' name='viewport' />
     <!-- (1) Adjust the following meta data which will be passed to Facebook when clicking the Like button -->
     <!-- Making sure to edit the url in the 'og:video' property -->
-    <!-- And adjusting to include your personal or page Facebook ID in the 'fb:admins' property -->
-    <meta content='QOTSA' property='og:title' />
-    <meta content='QOTSA remastered with b-sides.' property='og:description' />
+    <!-- And adjusting to include a new Facebook app ID in the 'fb:app_id' property -->
+    <meta content='Premiere' property='og:title' />
+    <meta content='The first listen, powered by SoundCloud.' property='og:description' />
     <meta content='album' property='og:type' />
-    <meta content='http://qotsa.heroku.com/images/artwork.jpg' property='og:image' />
-    <meta content='http://qotsa.heroku.com' property='og:url' />
-    <meta content='Queens of the Stone Age' property='og:site_name' />
-    <meta content='http://player.soundcloud.com/player.swf?url=http://soundcloud.com/dominorecordco/sets/qotsa/&amp;color=000000&amp;auto_play=true&amp;player_type=artwork' property='og:video' />
+    <meta content='http://premiere.heroku.com/images/artwork.jpg' property='og:image' />
+    <meta content='http://premiere.heroku.com' property='og:url' />
+    <meta content='SoundCloud' property='og:site_name' />
+    <meta content='http://player.soundcloud.com/player.swf?url=http://soundcloud.com/foofighters/sets/wasting-light&amp;color=000000&amp;auto_play=true&amp;player_type=artwork' property='og:video' />
     <meta content='425' property='og:video:height' />
     <meta content='425' property='og:video:width' />
     <meta content='application/x-shockwave-flash' property='og:video:type' />
-    <meta content='23424322' property='fb:admins' />
+    <meta content='209833269033641' property='fb:app_id' />
     <!-- (2) Include a link to your SoundCloud Set -->
     <!-- And the directory where your SoundManager2 swf files can be found -->
     <script type='text/javascript'>
       //<![CDATA[
-        var url = "http://soundcloud.com/dominorecordco/sets/qotsa/",
-        		soundmanager_url = "swfs/";
+        var url = "http://soundcloud.com/foofighters/sets/wasting-light",
+        		soundmanager_url = "/swfs/";
       //]]>
     </script>
     <!-- (3) Include all appropriate Javascript -->
@@ -32,10 +32,11 @@
     <script src='http://premiere.heroku.com/js/jquery.mousewheel.js' type='text/javascript'></script>
     <script src='http://premiere.heroku.com/js/modernizr.js' type='text/javascript'></script>
     <script src='http://premiere.heroku.com/js/jquery.color.min.js' type='text/javascript'></script>
+    <script src='http://premiere.heroku.com/js/cors.js' type='text/javascript'></script>
     <script src='http://premiere.heroku.com/js/application.js' type='text/javascript'></script>
     <!-- (4) Include both stylesheets -->
     <!-- Add your custom css in the provided area below or simply locally adjust theme.css accordingly -->
-    <!-- For rapid theme development, check the theme.scss file provided here: -->
+    <!-- For rapid theme development, check the theme.scss file provided [here](https://github.com/soundcloud/soundcloud-premiere/blob/master/public/stylesheets/sass/theme.scss): -->
     <link href='http://premiere.heroku.com/stylesheets/application.css' media='screen' rel='stylesheet' type='text/css' />
     <link href='http://premiere.heroku.com/stylesheets/theme.css' media='screen' rel='stylesheet' type='text/css' />
     <style type='text/css'>
@@ -49,16 +50,14 @@
     <div class='footer'>
       <div class='share'>
         <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-        <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fqotsa.heroku.com&amp;layout=button_count&amp;show_faces=false&amp;width=90&amp;action=like&amp;colorscheme=light&amp;height=20" scrolling="no" frameborder="0" class="facebook-like-button" style="border:none; overflow:hidden; width:90px; height:20px;" allowTransparency="true"></iframe>
+        <iframe src="http://www.facebook.com/plugins/like.php?href=premiere.heroku.com&layout=button_count&show_faces=false&width=90&action=like&colorscheme=light&height=20" scrolling="no" frameborder="0" class="facebook-like-button" style="border:none; overflow:hidden; width:90px; height:20px;" allowTransparency="true"></iframe>
       </div>
       <div class='links'>
-        <a href='http://www.dominorecordco.com/uk/albums/11-01-11/queens-of-the-stone-age/' target='_blank'>Buy it Now</a>
-        <a href='http://www.rekordsrekords.com/news' target='_blank'>Enter Site</a>
+        <a href='http://www.smarturl.it/fooswlpreorder' target='_blank'>Buy it Now</a>
+        <a href='#' target='_blank'>Enter Site</a>
       </div>
       <div class='logo'>
-        <a href='http://soundcloud.com/qotsa' target='_blank'>
-          <img border='0' src='http://premiere.heroku.com/images/soundcloud.png' />
-        </a>
+        <a href='http://soundcloud.com' target='_blank'>&nbsp;</a>
       </div>
     </div>
   </body>
