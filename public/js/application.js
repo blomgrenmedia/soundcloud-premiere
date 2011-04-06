@@ -141,7 +141,7 @@ $(function(){
 						
 						$('.shared_message').bind('click', function(){
 
-							alert( $(this).attr('title') );
+							alert( 'You will share "' + $(this).attr('title') + '" on Twitter.');
 
 						});
 
