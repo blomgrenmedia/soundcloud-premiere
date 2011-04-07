@@ -15,6 +15,7 @@ require 'image_size'
 require 'base64'
 require 'json'
 require 'omniauth'
+require 'fbgraph'
 
 use Sass::Plugin::Rack
 
@@ -26,9 +27,7 @@ class App < Sinatra::Base
     
     # Set lock to true if you wish to lock the stream behind a *tweet to listen*
     
-    haml :index, :locals => {
-      :lock => false
-    }
+    haml :index, :locals => { :lock => false }
     
   end
   
@@ -91,7 +90,27 @@ class App < Sinatra::Base
     
   end
   
-  # Tweet to Unlock
+  # Social Locks
+  
+  # Facebook Like to Unlock
+  
+  # If you wish to have users like your Facebook page in order to listen to the stream
+  # you must first register a new Facebook app [here](https://www.facebook.com/developers/createapp.php)
+  
+  # Once registered, drop the app secret and set lock to true in the post method below.
+  # Then, follow the instructions [here]().
+  
+  post '/' do
+    
+    @signed_request = FBGraph::Canvas.parse_signed_request('4d4e51049edcc1150e17b96823eb227e', params[:signed_request])
+    
+    # Set lock to true if you wish to lock the stream behind a *like to listen*
+    
+    haml :index, :locals => { :lock => true }
+    
+  end
+  
+  # Twitter Tweet to Unlock
   
   # If you wish to have users tweet in order to listen to the stream
   # you must first register a new Twitter app [here](http://twitter.com/apps/new).
@@ -102,7 +121,7 @@ class App < Sinatra::Base
   enable :sessions
   
   configure do
-    set :key => '123', :secret => '456'    
+    set :key => 'consumer_key', :secret => 'consumer_secret'    
     use OmniAuth::Strategies::Twitter, key, secret
   end
   

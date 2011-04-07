@@ -27,6 +27,10 @@ soundManager.useFastPolling = true;
 
 $(function(){
 	
+	// If Facebook, resize the tab accordingly
+	
+	if (typeof tab != "undefined") { FB.Canvas.setSize({ width: 520, height: 600 }); }
+	
 	// Ping Bit.ly
 	
 	ping = new Image();
@@ -42,6 +46,119 @@ $(function(){
 	$("<div class='header'><div class='time'><div class='track'></div><div class='buffer'></div><div class='played'></div><canvas id='waveform'></canvas><div class='waveform'><img /></div><div class='seekhead'></div></div><div class='comments'></div></div>").prependTo('body');
 	
 	$("<div class='message'></div>").appendTo('body');
+	
+	// ## Create Lock
+	
+	// If a social lock exists, start creating the lock.
+	
+	// Note: Expert deployment only. This will not work using the basic index.html deployment.
+		
+	if (typeof lock != "undefined") {
+		
+		// If the lock hasn't been unlocked yet
+		
+		if (unlocked != true) {
+			
+			// Hide the play button
+
+			$(".button").hide();
+			
+			// Create the lock and append it to the artwork div
+
+			$('<div class="lock"><div class="instructions"></div><a class="submit" href="#"></a></div>').appendTo('.artwork');
+			
+			if (lock == "facebook") {
+				
+				// Facebook
+				
+				// Declare default like message, this can be edited as needed.
+				
+				var like_info = "To unlock the full stream please like this page first.";
+				
+				$('.instructions').html(like_info);
+				
+				// Bind a click event that alert user he/she must like the page in order to listen.
+				
+				$('.submit').text('Like').bind('click', function(){
+					
+					alert('Please click the Like button at the top of the page to unlock the full stream.');
+					
+				});
+				
+			} else {						
+				
+				// Twitter
+				
+				// Declare some default share messages, this can be edited as needed.
+
+				var login_info = "To unlock the full stream please login below first.",
+						share_info = "Click below to share a <a class='shared_message' title='" + message + "'>message</a><br>and unlock " + playlist.title + ".";
+
+				if (logged_in) {
+
+					// If the user is logged in
+
+					// * Add the appropriate instructions
+
+					$('.instructions').html(share_info);
+
+					// * Adjust the submit button accordingly
+
+					$('.submit').addClass('unlock').text('Share & Unlock');
+
+					// * Bind a click function to the submit button that posts to the unlock method
+
+					$('.submit').bind('click', function(){
+
+						$(this).html("Unlocking");
+
+						$.post('/unlock', { message: message }, function(data) {
+
+							if (data) {
+
+								// Fade out the lock
+
+								$('.lock').fadeOut('slow');
+
+								// Unlock the player
+
+								unlockPlayer();		
+
+							} else {
+
+								// ERROR
+
+							}
+
+						});
+
+					});
+
+					// * Bind a click function to the *shared_message* div that pops up the message the user will share
+
+					$('.shared_message').bind('click', function(){
+
+						alert( 'You will share "' + $(this).attr('title') + '" on Twitter.');
+
+					});
+
+				} else {
+
+					// If the user is not logged in add the appropriate instructions
+
+					$('.instructions').text(login_info);
+
+					// and make the submit button a login button
+
+					$('.submit').addClass('login').text('Twitter').attr('href', '/auth/twitter');
+
+				}
+				
+			}
+		
+		}
+
+	}
 	
 	// Center Player & Share buttons on page
 	
@@ -71,95 +188,9 @@ $(function(){
 		
 		// Resolve the playlist and get its data from SoundCloud
 		
-		getCORS('http://api.soundcloud.com/resolve?url=' + url + '&format=json&consumer_key=' + consumer_key, function(playlist){
+		//getCORS('http://api.soundcloud.com/resolve?url=' + url + '&format=json&consumer_key=' + consumer_key, function(playlist){
 			
-			// ## Create Lock
-			
-			// If a share message exists, start creating the lock.
-			// Note: Expert deployment only. This will not work using the basic index.html deployment.
-
-			if (typeof message != "undefined") {
-				
-				// If the lock hasn't been unlocked yet
-				
-				if (unlocked != true) {
-					
-					// Declare some default share messages, this can be edited as needed.
-
-					var login_info = "To unlock the full stream please login below first.",
-							share_info = "Click below to share a <a class='shared_message' title='" + message + "'>message</a><br>and unlock " + playlist.title + ".";
-							
-					// Hide the play button
-
-					$(".button").hide();
-					
-					// Create the lock and append it to the artwork div
-
-					$('<div class="lock"><div class="instructions"></div><a class="submit" href="#"></a></div>').appendTo('.artwork');
-
-					if (logged_in) {
-						
-						// If the user is logged in
-						
-						// * Add the appropriate instructions
-
-						$('.instructions').html(share_info);
-						
-						// * Adjust the submit button accordingly
-
-						$('.submit').addClass('unlock').text('Share & Unlock');
-						
-						// * Bind a click function to the submit button that posts to the unlock method
-					
-						$('.submit').bind('click', function(){
-
-							$(this).html("Unlocking");
-
-							$.post('/unlock', { message: message }, function(data) {
-
-								if (data) {
-								
-									// Fade out the lock
-
-									$('.lock').fadeOut('slow');
-
-									// Unlock the player
-
-									unlockPlayer();		
-
-								} else {
-
-									// ERROR
-
-								}
-
-							});
-						
-						});
-						
-						// * Bind a click function to the *shared_message* div that pops up the message the user will share
-						
-						$('.shared_message').bind('click', function(){
-
-							alert( 'You will share "' + $(this).attr('title') + '" on Twitter.');
-
-						});
-
-					} else {
-						
-						// If the user is not logged in add the appropriate instructions
-
-						$('.instructions').text(login_info);
-						
-						// and make the submit button a login button
-
-						$('.submit').addClass('login').text('Twitter').attr('href', '/auth/twitter');
-
-					}
-				
-				}
-
-			}
+		$.getJSON('http://api.soundcloud.com/resolve?url=' + url + '&format=json&consumer_key=' + consumer_key + '&callback=?', function(playlist){
 			
 			// Once playlist data is loaded, apply the artwork, user avatar, and user username to the player.
 			
@@ -401,37 +432,49 @@ $(function(){
 		
 		$('li.active').click();
 		
-		// Declare basic animation variables
+		if (typeof tab != "undefined") {
+			
+			// If it's a Facebook lock, simply fade out the artwork.
 		
-		var duration = 4000, easing = 'swing';
+			$('.left').fadeOut('slow');
+			
+		} else {
+			
+			// If not, swing the panels out to unveil tracklisting.
+		
+			// Declare basic animation variables
+		
+			var duration = 4000, easing = 'swing';
 				
-		// Animate the left & right panels to swing open
+			// Animate the left & right panels to swing open
 		
-		$('.left').animate({
-			left: 0,
-			BorderTopRightRadius: 0,
-			BorderBottomRightRadius: 0,
-			WebkitBorderTopRightRadius: 0,
-			WebkitBorderBottomRightRadius: 0,
-			MozBorderRadiusTopright: 0,
-			MozBorderRadiusBottomright: 0
-		}, {
-			duration: duration,
-			easing: easing
-		});
+			$('.left').animate({
+				left: 0,
+				BorderTopRightRadius: 0,
+				BorderBottomRightRadius: 0,
+				WebkitBorderTopRightRadius: 0,
+				WebkitBorderBottomRightRadius: 0,
+				MozBorderRadiusTopright: 0,
+				MozBorderRadiusBottomright: 0
+			}, {
+				duration: duration,
+				easing: easing
+			});
 
-		$('.right').animate({
-			left: $('.player').width() / 2,
-			BorderTopLeftRadius: 0,
-			BorderBottomLeftRadius: 0,
-			WebkitBorderTopLeftRadius: 0,
-			WebkitBorderBottomLeftRadius: 0,
-			MozBorderRadiusTopleft: 0,
-			MozBorderRadiusBottomleft: 0
-		}, {
-			duration: duration,
-			easing: easing
-		});
+			$('.right').animate({
+				left: $('.player').width() / 2,
+				BorderTopLeftRadius: 0,
+				BorderBottomLeftRadius: 0,
+				WebkitBorderTopLeftRadius: 0,
+				WebkitBorderBottomLeftRadius: 0,
+				MozBorderRadiusTopleft: 0,
+				MozBorderRadiusBottomleft: 0
+			}, {
+				duration: duration,
+				easing: easing
+			});
+			
+		}
 		
 		// Bind a *click* event to the time div
 
@@ -620,7 +663,9 @@ $(function(){
 
 						// Get track comments from SoundCloud
 													
-						getCORS("http://api.soundcloud.com/tracks/" + track.id + "/comments.json?offset=" + offset + "&consumer_key=" + consumer_key, function(comments){
+						//getCORS("http://api.soundcloud.com/tracks/" + track.id + "/comments.json?offset=" + offset + "&consumer_key=" + consumer_key, function(comments){
+							
+						$.getJSON("http://api.soundcloud.com/tracks/" + track.id + "/comments.json?offset=" + offset + "&consumer_key=" + consumer_key + '&callback=?', function(comments){
 
 							// Loop through each comment
 

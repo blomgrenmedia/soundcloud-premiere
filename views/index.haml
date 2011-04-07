@@ -1,8 +1,8 @@
 - # (0) I use this to swap out the asset urls depending on expert vs. basic deployments.
 - # Do not touch!
 
-- url = "http://premiere.heroku.com"
-- #url = ""
+- #url = "http://premiere.heroku.com"
+- url = ""
 
 !!!
 %html
@@ -35,19 +35,40 @@
 			var url = "http://soundcloud.com/foofighters/sets/wasting-light",
 					soundmanager_url = "/swfs/";
 					
-		- # (2.5) Expert: This adds the javascript variables needed to perform a Tweet to Unlock.
-		- # You should edit the shared message only.
-					
+		- # (2.5) Expert: This adds the javascript variables needed to perform a Social to Unlock.
+							
 		- if defined?(lock) && lock
 		
-			/ (2.5) Variables needed to perform Tweet to Unlock
+			/ (2.5) Social to Unlock
+			
+			- if request.request_method == "GET"
+			
+				/ Variables needed to perform Twitter Tweet to Unlock
 		
-			:javascript
-				var message = "Visit [link] to unlock the full stream of @FooFighters's new record #WastingLight.",
-						logged_in = #{!session[:user].nil?},
-						unlocked = #{!session[:unlocked].nil?};
+				:javascript
+					var lock = "twitter",
+							message = "Visit [link] to unlock the full stream of @FooFighters's new record #WastingLight.",
+							logged_in = #{!session[:user].nil?},
+							unlocked = #{!session[:unlocked].nil?};
+							
+			- else
+						
+				/ Variables needed to perform Facebook Like to Unlock	
+			
+				:javascript				
+					var lock = "facebook",
+							unlocked = #{@signed_request['page']['liked']};
 		
 		/ (3) Include all appropriate Javascript
+		
+		- # If it's a POST, it's coming from Facebook, so include their JS SDK and set a tab variable
+		
+		- if request.request_method == "POST"
+		
+			%script{:type => "text/javascript", :src => "http://connect.facebook.net/en_US/all.js"}
+		
+			:javascript
+				var tab = true;
 
 		%script{:type => "text/javascript", :src => "#{url}/js/jquery.min.js"}
 		%script{:type => "text/javascript", :src => "#{url}/js/soundmanager2.js"}
@@ -82,7 +103,6 @@
 			.links
 		
 				%a{:href => "http://www.smarturl.it/fooswlpreorder", :target => "_blank"} Buy it Now
-				%a{:href => "#", :target => "_blank"} Enter Site
 		
 			.logo
 				%a{:href => "http://soundcloud.com", :target => "_blank"} &nbsp;

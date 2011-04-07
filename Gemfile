@@ -5,6 +5,7 @@ gem 'haml'
 gem 'imagesize'
 gem 'json'
 gem 'omniauth'
+gem 'fbgraph'
 
 group :development do
   gem 'shotgun'
