@@ -92,7 +92,7 @@ $(function(){
 				// Declare some default share messages, this can be edited as needed.
 
 				var login_info = "To unlock the full stream please login below first.",
-						share_info = "Click below to share a <a class='shared_message' title='" + message + "'>message</a><br>and unlock " + playlist.title + ".";
+						share_info = "Click below to share a <a class='shared_message' title='" + message + "'>message</a><br>and unlock the full stream.";
 
 				if (logged_in) {
 

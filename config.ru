@@ -21,7 +21,7 @@ use Sass::Plugin::Rack
 
 class App < Sinatra::Base
 
-  # Main Index
+  ### Main Index
 
   get '/' do
     
@@ -31,7 +31,7 @@ class App < Sinatra::Base
     
   end
   
-  # Waveform Data
+  ### Waveform Data
   
   get '/waveform' do
     
@@ -90,27 +90,27 @@ class App < Sinatra::Base
     
   end
   
-  # Social Locks
+  ### Social Locks
   
-  # Facebook Like to Unlock
+  ## Facebook Like to Unlock
   
   # If you wish to have users like your Facebook page in order to listen to the stream
-  # you must first register a new Facebook app [here](https://www.facebook.com/developers/createapp.php)
+  # you must first register a new Facebook app [here](https://www.facebook.com/developers/createapp.php).
   
-  # Once registered, drop the app secret and set lock to true in the post method below.
-  # Then, follow the instructions [here]().
+  # Once registered, drop the application secret and set lock to true in the post method below.
+  # Then, follow the instructions [here](https://github.com/soundcloud/soundcloud-premiere/wiki/Like-to-Unlock).
   
   post '/' do
     
-    @signed_request = FBGraph::Canvas.parse_signed_request('4d4e51049edcc1150e17b96823eb227e', params[:signed_request])
+    @signed_request = FBGraph::Canvas.parse_signed_request('app_secret', params[:signed_request])
     
     # Set lock to true if you wish to lock the stream behind a *like to listen*
     
-    haml :index, :locals => { :lock => true }
+    haml :index, :locals => { :lock => false }
     
   end
   
-  # Twitter Tweet to Unlock
+  ## Twitter Tweet to Unlock
   
   # If you wish to have users tweet in order to listen to the stream
   # you must first register a new Twitter app [here](http://twitter.com/apps/new).
