@@ -71,7 +71,7 @@ $(function(){
 		
 		// Resolve the playlist and get its data from SoundCloud
 		
-		$.getJSON('http://api.soundcloud.com/resolve?url=' + url + '&format=json&consumer_key=' + consumer_key + '&callback=?', function(playlist){
+		getCORS('http://api.soundcloud.com/resolve?url=' + url + '&format=json&consumer_key=' + consumer_key, function(playlist){
 			
 			// ## Create Lock
 			
